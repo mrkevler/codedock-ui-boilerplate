@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeDock UI - Complete Development Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Color Palette */
+            --purple: #7e22ce;
+            --lime-green: #ccff00;
+            --cyan: #00ffff;
+            --blue: #00b4d8;
+            --orange: #ff6600;
+            --pink: #ff33cc;
+            
+            /* Theme Variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            
+            /* Font Size Scale */
+            --font-scale: 1;
+        }
+
+        /* Dark Mode Variables */
+        .dark-mode {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dark mode specific overrides */
+        .dark-mode { background-color: var(--bg-secondary) !important; }
+        .dark-mode .bg-white { background-color: var(--bg-primary) !important; }
+        .dark-mode .bg-gray-50 { background-color: var(--bg-secondary) !important; }
+        .dark-mode .bg-gray-100 { background-color: #334155 !important; }
+        .dark-mode .bg-purple-50 { background-color: rgba(126, 34, 206, 0.1) !important; }
+        .dark-mode .text-gray-900 { color: var(--text-primary) !important; }
+        .dark-mode .text-gray-600 { color: var(--text-secondary) !important; }
+        .dark-mode .text-gray-500 { color: var(--text-secondary) !important; }
+        .dark-mode .border-gray-300 { border-color: var(--border-color) !important; }
+        .dark-mode .shadow-lg { box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color) !important; }
+        .dark-mode .shadow-xl { box-shadow: 0 20px 25px -5px var(--shadow-color), 0 10px 10px -5px var(--shadow-color) !important; }
+
+        /* Hero section dark mode fix */
+        .dark-mode .hero-section { 
+            background: var(--bg-primary) !important; 
+        }
+        .dark-mode .hero-section .text-gray-900 { 
+            color: var(--text-primary) !important; 
+        }
+        .dark-mode .hero-section .text-gray-600 { 
+            color: var(--text-secondary) !important; 
+        }
+
+        /* Font size scaling */
+        body {
+            font-size: calc(1rem * var(--font-scale));
+        }
+
+        /* Accessibility: High contrast mode */
+        .high-contrast {
+            filter: contrast(1.5) brightness(1.2);
+        }
+
+        /* Color scheme classes */
+        .scheme-purple { --accent-color: var(--purple); }
+        .scheme-blue { --accent-color: var(--blue); }
+        .scheme-lime { --accent-color: var(--lime-green); }
+        .scheme-cyan { --accent-color: var(--cyan); }
+        .scheme-orange { --accent-color: var(--orange); }
+        .scheme-pink { --accent-color: var(--pink); }
+
+        /* Dropdown Animation */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .dark-mode ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        /* Sidebar collapsed state */
+        .sidebar-collapsed .sidebar-category,
+        .sidebar-collapsed .sidebar-item span {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sidebar-collapsed nav {
+            overflow: hidden;
+        }
+
+        .sidebar-collapsed .space-y-1 {
+            display: none;
+        }
+
+        /* Sidebar specific scrollbar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 3px;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #6d28d9;
+        }
+
+        /* Tutorial Cards */
+        .tutorial-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 12px 35px rgba(126, 34, 206, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+
+        .tutorial-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--purple), var(--lime-green));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tutorial-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            bottom: -50%;
+            left: -50%;
+            background: linear-gradient(45deg, transparent, rgba(126, 34, 206, 0.05), transparent);
+            transform: rotate(45deg) scale(0);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+
+        .tutorial-card:hover::before {
+            opacity: 1;
+        }
+
+        .tutorial-card:hover::after {
+            transform: rotate(45deg) scale(1);
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(126, 34, 206, 0.15);
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            background: #334155;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: calc(0.875rem * var(--font-scale));
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .copy-button {
+            background: #475569;
+            color: #e2e8f0;
+            border: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .copy-button:hover {
+            background: #64748b;
+        }
+
+        /* Warning, Note, Quote Blocks */
+        .warning-block, .note-block, .quote-block {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .warning-block {
+            background: rgba(251, 146, 60, 0.1);
+            border-left: 4px solid #f97316;
+        }
+
+        .note-block {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .quote-block {
+            background: rgba(126, 34, 206, 0.05);
+            border-left: 4px solid var(--purple);
+        }
+
+        /* Terminal Window */
+        .terminal-window {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 1.5rem 0;
+        }
+
+        .terminal-header {
+            background: #334155;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-button.red { background: #ef4444; }
+        .terminal-button.yellow { background: #eab308; }
+        .terminal-button.green { background: #22c55e; }
+
+        .terminal-content {
+            padding: 1.5rem;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: calc(0.875rem * var(--font-scale));
+            line-height: 1.6;
+        }
+
+        .terminal-prompt {
+            color: var(--lime-green);
+            font-weight: 600;
+        }
+
+        /* Module Layouts */
+        .two-column-module {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(126, 34, 206, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .two-column-module {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .two-column-code-module {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .two-column-theory-module {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        /* Custom Lists */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-list li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 transition-colors duration-300">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50 transition-opacity">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-700 mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading content...</p>
+        </div>
+    </div>
+
+    <!-- Fixed Header -->
+    <header id="header" class="fixed top-0 w-full bg-white shadow-lg z-40 transition-all duration-300 h-16">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            <!-- Left side - Navigation -->
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <span class="text-purple-700 text-xl font-bold">&lt;/&gt;</span>
+                    <span class="font-bold text-gray-900">CodeDock UI</span>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav hidden md:flex space-x-6">
+                    <a href="#home" onclick="showPage('home')" class="text-purple-700 hover:text-purple-900 font-semibold transition-colors">Home</a>
+                    <div class="relative">
+                        <button onclick="toggleTutorialsDropdown()" class="text-purple-700 hover:text-purple-900 font-semibold transition-colors flex items-center">
+                            Tutorials <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div id="tutorials-dropdown" class="dropdown-menu min-w-[200px]">
+                            <a href="#" onclick="navigateToTutorial('core-concepts')" class="dropdown-item">Core Concepts</a>
+                            <a href="#" onclick="navigateToTutorial('frontend-basics')" class="dropdown-item">Frontend Basics</a>
+                            <a href="#" onclick="navigateToTutorial('ui-frameworks')" class="dropdown-item">UI Frameworks</a>
+                            <a href="#" onclick="navigateToTutorial('js-ecosystem')" class="dropdown-item">JS Ecosystem</a>
+                            <a href="#" onclick="navigateToTutorial('interactive-frontend')" class="dropdown-item">Interactive Frontend</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <!-- Right side - Controls -->
+            <div class="flex items-center space-x-3">
+                <button id="dark-mode-toggle" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <i class="fas fa-moon text-gray-600"></i>
+                </button>
+                <button id="accessibility-toggle" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <i class="fas fa-universal-access text-gray-600"></i>
+                </button>
+                
+                <!-- Desktop Login/Signup -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <button id="login-toggle" class="px-4 py-2 text-purple-700 hover:bg-purple-50 rounded-lg font-semibold transition-colors">Login</button>
+                    <button id="signup-toggle" class="px-4 py-2 bg-purple-700 text-white hover:bg-purple-800 rounded-lg font-semibold transition-colors">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Desktop Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-16 w-72 h-full bg-white shadow-lg z-30 transform transition-transform duration-300 hidden md:block">
+        <div class="p-4 h-full flex flex-col">
+            <button id="sidebar-toggle" class="mb-4 p-2 hover:bg-gray-100 rounded-lg transition-colors flex items-center justify-center w-10 h-10">
+                <i class="fas fa-chevron-left text-gray-600"></i>
+            </button>
+            
+            <!-- Tutorial Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto sidebar-scroll">
+                <h3 class="sidebar-category font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide">Learning Path</h3>
+                
+                <div class="space-y-1">
+                    <a href="#" onclick="navigateToTutorial('core-concepts')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
+                        <span>1. Core Concepts</span>
+                    </a>
+                    
+                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+                        <a href="#networks" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>1.1 Networks – HTTP/S, DNS</span>
+                        </a>
+                        <a href="#cli" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>1.2 Command Line (CLI)</span>
+                        </a>
+                        <a href="#ide" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>1.3 IDE – VS Code setup</span>
+                        </a>
+                        <a href="#git" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>1.4 Version Control - Git</span>
+                        </a>
+                    </div>
+                    
+                    <a href="#" onclick="navigateToTutorial('frontend-basics')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
+                        <span>2. Frontend Basics</span>
+                    </a>
+                    
+                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+                        <a href="#html" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>2.1 HTML – Structure & semantic tags</span>
+                        </a>
+                        <a href="#css" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>2.2 CSS – Styling, flex, grid</span>
+                        </a>
+                        <a href="#javascript" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>2.3 JavaScript – DOM, events</span>
+                        </a>
+                    </div>
+                    
+                    <a href="#" onclick="navigateToTutorial('ui-frameworks')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
+                        <span>3. UI Frameworks</span>
+                    </a>
+                    
+                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+                        <a href="#bootstrap" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>3.1 Bootstrap – Responsive design</span>
+                        </a>
+                        <a href="#tailwind" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>3.2 Tailwind CSS – Utility-first</span>
+                        </a>
+                    </div>
+                    
+                    <a href="#" onclick="navigateToTutorial('js-ecosystem')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
+                        <span>4. JS Ecosystem</span>
+                    </a>
+                    
+                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+                        <a href="#nodejs" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>4.1 Node.js – Runtime environment</span>
+                        </a>
+                        <a href="#npm" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>4.2 NPM – Package management</span>
+                        </a>
+                        <a href="#bundlers" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>4.3 Bundlers – Webpack, Vite</span>
+                        </a>
+                    </div>
+                    
+                    <a href="#" onclick="navigateToTutorial('interactive-frontend')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
+                        <span>5. Interactive Frontend</span>
+                    </a>
+                    
+                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+                        <a href="#react" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>5.1 React.js – JSX, components</span>
+                        </a>
+                        <a href="#react-hooks" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
+                            <span>5.2 Props, state, hooks</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Accessibility Panel -->
+    <div id="accessibility-panel" class="fixed top-0 right-0 w-96 h-full bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-gray-900">Accessibility Settings</h2>
+                <button id="accessibility-close" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="mb-6">
+                <h3 class="font-semibold text-gray-900 mb-3">Theme</h3>
+                <div class="flex items-center space-x-3">
+                    <button id="light-theme" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Light</button>
+                    <button id="dark-theme" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Dark</button>
+                </div>
+            </div>
+            
+            <!-- Color Scheme -->
+            <div class="mb-6">
+                <h3 class="font-semibold text-gray-900 mb-3">Color Scheme</h3>
+                <div class="grid grid-cols-3 gap-2">
+                    <button id="scheme-purple" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #7e22ce;" onclick="app.setColorScheme('purple')"></button>
+                    <button id="scheme-blue" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #00b4d8;" onclick="app.setColorScheme('blue')"></button>
+                    <button id="scheme-lime" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #ccff00;" onclick="app.setColorScheme('lime')"></button>
+                    <button id="scheme-cyan" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #00ffff;" onclick="app.setColorScheme('cyan')"></button>
+                    <button id="scheme-orange" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #ff6600;" onclick="app.setColorScheme('orange')"></button>
+                    <button id="scheme-pink" class="w-full h-10 rounded-lg border-2 border-transparent" style="background: #ff33cc;" onclick="app.setColorScheme('pink')"></button>
+                </div>
+            </div>
+            
+            <!-- Font Size -->
+            <div class="mb-6">
+                <h3 class="font-semibold text-gray-900 mb-3">Font Size</h3>
+                <div class="flex items-center space-x-3">
+                    <button onclick="app.adjustFontSize(-10)" class="px-3 py-2 bg-gray-100 rounded-lg transition-colors">A-</button>
+                    <span id="font-size-display" class="flex-1 text-center">100%</span>
+                    <button onclick="app.adjustFontSize(10)" class="px-3 py-2 bg-gray-100 rounded-lg transition-colors">A+</button>
+                </div>
+            </div>
+            
+            <!-- High Contrast -->
+            <div class="mb-6">
+                <h3 class="font-semibold text-gray-900 mb-3">Contrast</h3>
+                <div class="flex items-center space-x-3">
+                    <button id="normal-contrast" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Normal</button>
+                    <button id="high-contrast" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">High</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Panel -->
+    <div id="login-panel" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30">
+        <div class="container mx-auto px-4 py-6">
+            <div class="max-w-md mx-auto">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Login</h3>
+                <form class="space-y-4">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <input type="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Panel -->
+    <div id="signup-panel" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30">
+        <div class="container mx-auto px-4 py-6">
+            <div class="max-w-md mx-auto">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Sign Up</h3>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <input type="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="transition-all duration-300 ml-72 pt-16">
+        
+        <!-- HOME CONTENT -->
+        <div id="home-content">
+            <!-- Hero Section -->
+            <section class="hero-section bg-gradient-to-br from-purple-50 to-white py-20">
+                <div class="container mx-auto px-4 text-center">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                        Master <span class="text-purple-700">Web Development</span> Step by Step
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                        From core concepts to interactive frontends. Follow a structured learning path designed to take you from beginner to proficient web developer.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="scrollToModules()" class="px-8 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors font-semibold">
+                            Start Learning Path
+                        </button>
+                        <button onclick="scrollToSection('learning-modules')" class="px-8 py-3 border border-purple-700 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors font-semibold">
+                            View Modules
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Path -->
+            <section id="learning-modules" class="py-16">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Learning Path</h2>
+                    
+                    <!-- Category 1: Core Concepts -->
+                    <div class="mb-16">
+                        <div class="text-center mb-8">
+                            <div class="flex items-center justify-center mb-4">
+                                <i class="fas fa-cube text-4xl text-purple-700 mr-4"></i>
+                                <h3 class="text-2xl font-bold text-gray-900">1. Core Concepts</h3>
+                            </div>
+                            <p class="text-gray-600 max-w-2xl mx-auto">
+                                Essential foundations for web development: understanding networks, command line basics, development environment setup, and version control.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="tutorial-card">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-4">
+                                        <i class="fas fa-network-wired text-2xl text-blue-500 mr-3"></i>
+                                        <h4 class="text-lg font-bold text-gray-900">Networks</h4>
+                                    </div>
+                                    <p class="text-gray-600 mb-4 text-sm">
+                                        HTTP/S protocols, DNS resolution, and client-server architecture fundamentals.
+                                    </p>
+                                    <div class="text-xs text-gray-500 mb-4">
+                                        <span><i class="fas fa-clock mr-1"></i> 2 hours</span>
+                                    </div>
+                                </div>
+                                <button onclick="navigateToTutorial('core-concepts')" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors text-sm">
+                                    Start Lesson
+                                </button>
+                            </div>
+                            
+                            <div class="tutorial-card">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-4">
+                                        <i class="fas fa-terminal text-2xl text-gray-700 mr-3"></i>
+                                        <h4 class="text-lg font-bold text-gray-900">Command Line</h4>
+                                    </div>
+                                    <p class="text-gray-600 mb-4 text-sm">
+                                        Terminal basics, file navigation, and essential CLI commands for developers.
+                                    </p>
+                                    <div class="text-xs text-gray-500 mb-4">
+                                        <span><i class="fas fa-clock mr-1"></i> 2 hours</span>
+                                    </div>
+                                </div>
+                                <button onclick="navigateToTutorial('core-concepts')" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors text-sm">
+                                    Start Lesson
+                                </button>
+                            </div>
+                            
+                            <div class="tutorial-card">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-4">
+                                        <i class="fas fa-code text-2xl text-blue-600 mr-3"></i>
+                                        <h4 class="text-lg font-bold text-gray-900">IDE Setup</h4>
+                                    </div>
+                                    <p class="text-gray-600 mb-4 text-sm">
+                                        VS Code installation, extensions, and optimal development environment configuration.
+                                    </p>
+                                    <div class="text-xs text-gray-500 mb-4">
+                                        <span><i class="fas fa-clock mr-1"></i> 1.5 hours</span>
+                                    </div>
+                                </div>
+                                <button onclick="navigateToTutorial('core-concepts')" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors text-sm">
+                                    Start Lesson
+                                </button>
+                            </div>
+                            
+                            <div class="tutorial-card">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-4">
+                                        <i class="fab fa-git-alt text-2xl text-orange-500 mr-3"></i>
+                                        <h4 class="text-lg font-bold text-gray-900">Version Control</h4>
+                                    </div>
+                                    <p class="text-gray-600 mb-4 text-sm">
+                                        Git fundamentals, GitHub workflows, and collaborative development practices.
+                                    </p>
+                                    <div class="text-xs text-gray-500 mb-4">
+                                        <span><i class="fas fa-clock mr-1"></i> 2.5 hours</span>
+                                    </div>
+                                </div>
+                                <button onclick="navigateToTutorial('core-concepts')" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors text-sm">
+                                    Start Lesson
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue with other categories (Frontend Basics, UI Frameworks, etc.) -->
+                    <!-- (Additional categories would continue here in the same pattern) -->
+                    
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="bg-gray-900 text-white py-12 mt-16">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">CodeDock UI</h3>
+                            <p class="text-gray-400">
+                                Learn to code with our comprehensive tutorials and interactive learning platform.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4">Quick Links</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4">Learning Paths</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Frontend Basics</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">JavaScript</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">React</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4">Contact</h4>
+                            <p class="text-gray-400 mb-2">support@codedock.ui</p>
+                            <p class="text-gray-400">Created by <a href="https://bartoszsergot.com" target="_blank" class="text-purple-400 hover:text-purple-300">mr kevler</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- TUTORIAL CONTENT -->
+        <div id="tutorial-content" style="display: none;">
+            <div class="min-h-screen bg-gray-50 pt-8">
+                <div class="container mx-auto px-4">
+                    
+                    <!-- Core Concepts Section -->
+                    <div class="tutorial-section" id="core-concepts">
+                        <div class="text-center mb-12">
+                            <h1 class="text-4xl font-bold text-gray-900 mb-4">Core Concepts</h1>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Master the fundamental building blocks of web development. These core concepts form the foundation for everything you'll build as a developer.
+                            </p>
+                        </div>
+
+                        <!-- Networks Section -->
+                        <div id="networks" class="mb-16">
+                            <div class="two-column-theory-module">
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                                    <i class="fas fa-network-wired text-blue-500 mr-3"></i>
+                                    Networks – HTTP/S, DNS
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    Understanding how the web works is crucial for any web developer. Let's explore the protocols and systems that make web communication possible.
+                                </p>
+                                <ul class="custom-list mb-6">
+                                    <li>HTTP vs HTTPS protocols</li>
+                                    <li>DNS resolution process</li>
+                                    <li>Client-server architecture</li>
+                                    <li>Request-response cycle</li>
+                                    <li>Status codes and headers</li>
+                                </ul>
+                            </div>
+
+                            <div class="two-column-code-module">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-4">Example HTTP Request</h4>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="text-sm font-medium text-gray-300">HTTP Request</span>
+                                        <button onclick="copyCode(this)" class="copy-button">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="code-content"><code>GET /api/users HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0
+Accept: application/json
+Authorization: Bearer token123</code></pre>
+                                </div>
+
+                                <div class="terminal-window">
+                                    <div class="terminal-header">
+                                        <div class="terminal-button red"></div>
+                                        <div class="terminal-button yellow"></div>
+                                        <div class="terminal-button green"></div>
+                                        <span class="text-sm text-gray-400 ml-3">Terminal</span>
+                                    </div>
+                                    <div class="terminal-content">
+                                        <div class="terminal-prompt">$ curl -H "Accept: application/json" https://api.example.com/users</div>
+                                        <div class="text-gray-300">HTTP/1.1 200 OK</div>
+                                        <div class="text-gray-300">Content-Type: application/json</div>
+                                        <div class="text-gray-300">{"users": [{"id": 1, "name": "John"}]}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="note-block">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-info-circle text-blue-500"></i>
+                                    <div>
+                                        <p><strong>Note:</strong> HTTPS encrypts data in transit, making it essential for any production website. Always use HTTPS for security.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CLI Section -->
+                        <div id="cli" class="mb-16">
+                            <div class="two-column-theory-module">
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                                    <i class="fas fa-terminal text-gray-700 mr-3"></i>
+                                    Command Line Interface
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    The command line is a powerful tool for developers. Master these essential commands to navigate and control your development environment efficiently.
+                                </p>
+                                <ul class="custom-list mb-6">
+                                    <li>File and directory navigation</li>
+                                    <li>Creating and managing files</li>
+                                    <li>Environment variables</li>
+                                    <li>Process management</li>
+                                    <li>Package management commands</li>
+                                </ul>
+                            </div>
+
+                            <div class="two-column-code-module">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-4">Essential CLI Commands</h4>
+                                <div class="terminal-window">
+                                    <div class="terminal-header">
+                                        <div class="terminal-button red"></div>
+                                        <div class="terminal-button yellow"></div>
+                                        <div class="terminal-button green"></div>
+                                        <span class="text-sm text-gray-400 ml-3">Terminal</span>
+                                    </div>
+                                    <div class="terminal-content">
+                                        <div class="terminal-prompt">$ pwd</div>
+                                        <div class="text-gray-300">/Users/developer/projects</div>
+                                        
+                                        <div class="terminal-prompt">$ ls -la</div>
+                                        <div class="text-gray-300">drwxr-xr-x  5 user  staff  160 Jan 15 10:30 my-project</div>
+                                        <div class="text-gray-300">-rw-r--r--  1 user  staff  1024 Jan 15 10:25 README.md</div>
+                                        
+                                        <div class="terminal-prompt">$ mkdir new-project && cd new-project</div>
+                                        <div class="terminal-prompt">$ touch index.html style.css script.js</div>
+                                        <div class="terminal-prompt">$ ls</div>
+                                        <div class="text-gray-300">index.html  script.js  style.css</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Continue with other sections... -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        class TutorialApp {
+            constructor() {
+                this.sidebarCollapsed = false;
+                this.currentTheme = 'light';
+                this.currentColorScheme = 'purple';
+                this.fontSize = 100;
+                this.highContrast = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.loadUserPreferences();
+                this.bindEventListeners();
+                this.hideLoadingOverlay();
+                this.showPage('home');
+            }
+
+            loadUserPreferences() {
+                // Load theme
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                this.setTheme(savedTheme);
+                
+                // Load color scheme
+                const savedColorScheme = localStorage.getItem('colorScheme') || 'purple';
+                this.setColorScheme(savedColorScheme);
+                
+                // Load font size
+                const savedFontSize = localStorage.getItem('fontSize') || '100';
+                this.setFontSize(parseInt(savedFontSize));
+                
+                // Load contrast
+                const savedContrast = localStorage.getItem('highContrast') === 'true';
+                this.setContrast(savedContrast);
+                
+                // Load sidebar state
+                const savedSidebarState = localStorage.getItem('sidebarCollapsed') === 'true';
+                if (savedSidebarState) {
+                    this.toggleSidebar();
+                }
+            }
+
+            bindEventListeners() {
+                // Sidebar toggle
+                const sidebarToggle = document.getElementById('sidebar-toggle');
+                if (sidebarToggle) {
+                    sidebarToggle.addEventListener('click', () => {
+                        this.toggleSidebar();
+                    });
+                }
+
+                // Dark mode toggle
+                document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+
+                // Accessibility panel
+                document.getElementById('accessibility-toggle').addEventListener('click', () => {
+                    this.toggleAccessibilityPanel();
+                });
+
+                document.getElementById('accessibility-close').addEventListener('click', () => {
+                    this.closeAccessibilityPanel();
+                });
+
+                // Theme buttons
+                document.getElementById('light-theme').addEventListener('click', () => {
+                    this.setTheme('light');
+                });
+
+                document.getElementById('dark-theme').addEventListener('click', () => {
+                    this.setTheme('dark');
+                });
+
+                // Contrast buttons
+                document.getElementById('normal-contrast').addEventListener('click', () => {
+                    this.setContrast(false);
+                });
+
+                document.getElementById('high-contrast').addEventListener('click', () => {
+                    this.setContrast(true);
+                });
+
+                // Login/Signup toggles
+                document.getElementById('login-toggle').addEventListener('click', () => {
+                    this.togglePanel('login-panel');
+                });
+
+                document.getElementById('signup-toggle').addEventListener('click', () => {
+                    this.togglePanel('signup-panel');
+                });
+            }
+
+            hideLoadingOverlay() {
+                setTimeout(() => {
+                    const overlay = document.getElementById('loading-overlay');
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 300);
+                }, 500);
+            }
+
+            showPage(pageName) {
+                // Hide all content sections
+                document.getElementById('home-content').style.display = 'none';
+                document.getElementById('tutorial-content').style.display = 'none';
+                
+                // Show selected page
+                if (pageName === 'home') {
+                    document.getElementById('home-content').style.display = 'block';
+                } else {
+                    document.getElementById('tutorial-content').style.display = 'block';
+                }
+            }
+
+            toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const mainContent = document.getElementById('main-content');
+                const toggleBtn = document.getElementById('sidebar-toggle');
+                const icon = toggleBtn.querySelector('i');
+                
+                this.sidebarCollapsed = !this.sidebarCollapsed;
+                
+                if (this.sidebarCollapsed) {
+                    sidebar.classList.remove('w-72');
+                    sidebar.classList.add('w-16');
+                    mainContent.classList.remove('ml-72');
+                    mainContent.classList.add('ml-16');
+                    icon.classList.remove('fa-chevron-left');
+                    icon.classList.add('fa-chevron-right');
+                    
+                    // Hide sidebar content when collapsed
+                    sidebar.classList.add('sidebar-collapsed');
+                } else {
+                    sidebar.classList.remove('w-16');
+                    sidebar.classList.add('w-72');
+                    mainContent.classList.remove('ml-16');
+                    mainContent.classList.add('ml-72');
+                    icon.classList.remove('fa-chevron-right');
+                    icon.classList.add('fa-chevron-left');
+                    
+                    // Show sidebar content when expanded
+                    sidebar.classList.remove('sidebar-collapsed');
+                }
+                
+                localStorage.setItem('sidebarCollapsed', this.sidebarCollapsed);
+            }
+
+            toggleTheme() {
+                const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                this.setTheme(newTheme);
+            }
+
+            setTheme(theme) {
+                this.currentTheme = theme;
+                const body = document.body;
+                const icon = document.querySelector('#dark-mode-toggle i');
+                
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    body.classList.remove('dark-mode');
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                
+                // Update accessibility panel buttons
+                document.getElementById('light-theme').classList.toggle('bg-purple-100', theme === 'light');
+                document.getElementById('dark-theme').classList.toggle('bg-purple-100', theme === 'dark');
+                
+                localStorage.setItem('theme', theme);
+            }
+
+            setColorScheme(scheme) {
+                this.currentColorScheme = scheme;
+                
+                // Remove previous scheme classes
+                document.body.className = document.body.className.replace(/scheme-\w+/g, '');
+                
+                // Add new scheme class
+                document.body.classList.add(`scheme-${scheme}`);
+                
+                // Update scheme buttons
+                document.querySelectorAll('[id^="scheme-"]').forEach(btn => {
+                    btn.classList.remove('border-purple-500');
+                });
+                document.getElementById(`scheme-${scheme}`).classList.add('border-purple-500');
+                
+                localStorage.setItem('colorScheme', scheme);
+            }
+
+            adjustFontSize(change) {
+                this.fontSize = Math.max(80, Math.min(150, this.fontSize + change));
+                this.setFontSize(this.fontSize);
+            }
+
+            setFontSize(size) {
+                this.fontSize = size;
+                const scale = size / 100;
+                document.documentElement.style.setProperty('--font-scale', scale);
+                document.getElementById('font-size-display').textContent = `${size}%`;
+                localStorage.setItem('fontSize', size);
+            }
+
+            setContrast(high) {
+                this.highContrast = high;
+                const body = document.body;
+                
+                if (high) {
+                    body.classList.add('high-contrast');
+                } else {
+                    body.classList.remove('high-contrast');
+                }
+                
+                // Update accessibility panel buttons
+                document.getElementById('normal-contrast').classList.toggle('bg-purple-100', !high);
+                document.getElementById('high-contrast').classList.toggle('bg-purple-100', high);
+                
+                localStorage.setItem('highContrast', high);
+            }
+
+            toggleAccessibilityPanel() {
+                const panel = document.getElementById('accessibility-panel');
+                if (panel.classList.contains('translate-x-full')) {
+                    panel.classList.remove('translate-x-full');
+                    panel.classList.add('translate-x-0');
+                } else {
+                    panel.classList.add('translate-x-full');
+                    panel.classList.remove('translate-x-0');
+                }
+            }
+
+            closeAccessibilityPanel() {
+                const panel = document.getElementById('accessibility-panel');
+                panel.classList.add('translate-x-full');
+                panel.classList.remove('translate-x-0');
+            }
+
+            togglePanel(panelId) {
+                const panel = document.getElementById(panelId);
+                
+                // Close other panels first
+                const allPanels = ['login-panel', 'signup-panel'];
+                allPanels.forEach(id => {
+                    if (id !== panelId) {
+                        this.closePanel(id);
+                    }
+                });
+                
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                } else {
+                    this.closePanel(panelId);
+                }
+            }
+
+            closePanel(panelId) {
+                const panel = document.getElementById(panelId);
+                panel.classList.add('hidden');
+            }
+
+            copyCode(button) {
+                const codeBlock = button.closest('.code-block');
+                const code = codeBlock.querySelector('.code-content code');
+                const text = code.textContent;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                    }, 2000);
+                });
+            }
+        }
+
+        // Global functions
+        function showPage(pageName) {
+            app.showPage(pageName);
+        }
+
+        function navigateToTutorial(section) {
+            // Close dropdown
+            const dropdown = document.getElementById('tutorials-dropdown');
+            dropdown.classList.remove('show');
+            
+            // Navigate to specific tutorial section
+            app.showPage('tutorials');
+            
+            // Scroll to section if it exists
+            setTimeout(() => {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollToModules() {
+            scrollToSection('learning-modules');
+        }
+
+        function toggleTutorialsDropdown() {
+            const dropdown = document.getElementById('tutorials-dropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.relative')) {
+                    dropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        }
+
+        function copyCode(button) {
+            app.copyCode(button);
+        }
+
+        // Initialize app
+        const app = new TutorialApp();
+
+        // Global exports
+        window.showPage = showPage;
+        window.navigateToTutorial = navigateToTutorial;
+        window.scrollToSection = scrollToSection;
+        window.scrollToModules = scrollToModules;
+        window.toggleTutorialsDropdown = toggleTutorialsDropdown;
+        window.copyCode = copyCode;
+        window.app = app;
+    </script>
+</body>
+</html>
