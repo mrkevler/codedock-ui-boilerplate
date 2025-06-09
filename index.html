@@ -1,74 +1,134 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Programming Tutorials - Szkielet Witryny</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 transition-colors duration-300">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 transition-colors duration-300">
     <!-- Loading Overlay -->
-    <div id="loading-overlay" class="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50 transition-opacity">
-        <div class="text-center">
-            <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-700 mx-auto mb-4"></div>
-            <p class="text-gray-600">Loading content...</p>
-        </div>
+    <div
+      id="loading-overlay"
+      class="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50 transition-opacity"
+    >
+      <div class="text-center">
+        <div
+          class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-700 mx-auto mb-4"
+        ></div>
+        <p class="text-gray-600">Loading content...</p>
+      </div>
     </div>
 
     <!-- Fixed Header -->
-    <header id="header" class="fixed top-0 w-full bg-white shadow-lg z-40 transition-all duration-300 h-16">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            <!-- Left side - Navigation -->
-            <div class="flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
-                    <span class="text-purple-700 text-xl font-bold">&lt;/&gt;</span>
-                    <span class="font-bold text-gray-900">CodeDock UI</span>
-                </div>
-                <!-- Desktop Navigation -->
-                <nav class="desktop-nav hidden md:flex space-x-6">
-                    <a href="#home" onclick="showPage('home')" class="text-purple-700 hover:text-purple-900 font-semibold transition-colors">Home</a>
-                    <div class="relative">
-                        <button onclick="toggleTutorialsDropdown()" class="text-purple-700 hover:text-purple-900 font-semibold transition-colors flex items-center">
-                            Tutorials <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </button>
-                        <div id="tutorials-dropdown" class="dropdown-menu min-w-[200px]">
-                            <a href="#" onclick="navigateToTutorial('core-concepts')" class="dropdown-item">Core Concepts</a>
-                            <a href="#" onclick="navigateToTutorial('frontend-basics')" class="dropdown-item">Frontend Basics</a>
-                            <a href="#" onclick="navigateToTutorial('ui-frameworks')" class="dropdown-item">UI Frameworks</a>
-                            <a href="#" onclick="navigateToTutorial('js-ecosystem')" class="dropdown-item">JS Ecosystem</a>
-                            <a href="#" onclick="navigateToTutorial('interactive-frontend')" class="dropdown-item">Interactive Frontend</a>
-                        </div>
-                    </div>
-                </nav>
-
-
+    <header
+      id="header"
+      class="fixed top-0 w-full bg-white shadow-lg z-40 transition-all duration-300 h-16"
+    >
+      <div
+        class="container mx-auto px-4 h-full flex items-center justify-between"
+      >
+        <!-- Left side - Navigation -->
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-2">
+            <span class="text-purple-700 text-xl font-bold">&lt;/&gt;</span>
+            <span class="font-bold text-gray-900">CodeDock UI</span>
+          </div>
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav hidden md:flex space-x-6">
+            <a
+              href="#home"
+              onclick="showPage('home')"
+              class="text-purple-700 hover:text-purple-900 font-semibold transition-colors"
+              >Home</a
+            >
+            <div class="relative">
+              <button
+                onclick="toggleTutorialsDropdown()"
+                class="text-purple-700 hover:text-purple-900 font-semibold transition-colors flex items-center"
+              >
+                Tutorials <i class="fas fa-chevron-down ml-1 text-xs"></i>
+              </button>
+              <div id="tutorials-dropdown" class="dropdown-menu min-w-[200px]">
+                <a
+                  href="#"
+                  onclick="navigateToTutorial('core-concepts')"
+                  class="dropdown-item"
+                  >Core Concepts</a
+                >
+                <a
+                  href="#"
+                  onclick="navigateToTutorial('frontend-basics')"
+                  class="dropdown-item"
+                  >Frontend Basics</a
+                >
+                <a
+                  href="#"
+                  onclick="navigateToTutorial('ui-frameworks')"
+                  class="dropdown-item"
+                  >UI Frameworks</a
+                >
+                <a
+                  href="#"
+                  onclick="navigateToTutorial('js-ecosystem')"
+                  class="dropdown-item"
+                  >JS Ecosystem</a
+                >
+                <a
+                  href="#"
+                  onclick="navigateToTutorial('interactive-frontend')"
+                  class="dropdown-item"
+                  >Interactive Frontend</a
+                >
+              </div>
             </div>
-            
-            <!-- Right side - Controls -->
-            <div class="flex items-center space-x-3">
-                <button id="dark-mode-toggle" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <i class="fas fa-moon text-gray-600"></i>
-                </button>
-                <button id="accessibility-toggle" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <i class="fas fa-universal-access text-gray-600"></i>
-                </button>
-                
-                <!-- Desktop Login/Signup -->
-                <div class="hidden md:flex items-center space-x-3">
-                    <button id="login-toggle" class="px-4 py-2 text-purple-700 hover:bg-purple-50 rounded-lg font-semibold transition-colors">Login</button>
-                    <button id="signup-toggle" class="px-4 py-2 bg-purple-700 text-white hover:bg-purple-800 rounded-lg font-semibold transition-colors">Sign Up</button>
-                </div>
-                
-                <!-- Mobile Menu Button - COMMENTED OUT FOR FUTURE DEVELOPMENT -->
-                <!--
+          </nav>
+        </div>
+
+        <!-- Right side - Controls -->
+        <div class="flex items-center space-x-3">
+          <button
+            id="dark-mode-toggle"
+            class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <i class="fas fa-moon text-gray-600"></i>
+          </button>
+          <button
+            id="accessibility-toggle"
+            class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <i class="fas fa-universal-access text-gray-600"></i>
+          </button>
+
+          <!-- Desktop Login/Signup -->
+          <div class="hidden md:flex items-center space-x-3">
+            <button
+              id="login-toggle"
+              class="px-4 py-2 text-purple-700 hover:bg-purple-50 rounded-lg font-semibold transition-colors"
+            >
+              Login
+            </button>
+            <button
+              id="signup-toggle"
+              class="px-4 py-2 bg-purple-700 text-white hover:bg-purple-800 rounded-lg font-semibold transition-colors"
+            >
+              Sign Up
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button - COMMENTED OUT FOR FUTURE DEVELOPMENT -->
+          <!--
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 bg-purple-700 hover:bg-purple-800 rounded-lg transition-colors">
                     <i class="fas fa-bars text-white"></i>
                 </button>
                 -->
-            </div>
         </div>
+      </div>
     </header>
 
     <!-- MOBILE NAVIGATION - COMMENTED OUT FOR FUTURE DEVELOPMENT -->
@@ -105,209 +165,378 @@
     -->
 
     <!-- Desktop Sidebar -->
-    <aside id="sidebar" class="fixed left-0 top-16 w-72 h-full bg-white shadow-lg z-30 transform transition-transform duration-300 hidden md:block">
-        <div class="p-4 h-full flex flex-col">
-            <button id="sidebar-toggle" class="mb-4 p-2 hover:bg-gray-100 rounded-lg transition-colors flex items-center justify-center w-10 h-10">
-                <i class="fas fa-chevron-left text-gray-600"></i>
-            </button>
-            
-            <!-- Tutorial Navigation -->
-            <nav class="space-y-1 flex-1 overflow-y-auto sidebar-scroll">
-                <h3 class="sidebar-category font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide">Learning Path</h3>
-                
-                <div class="space-y-1">
-                    <a href="#" onclick="navigateToTutorial('core-concepts')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
-                        <span>1. Core Concepts</span>
-                    </a>
-                    
-                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                        <a href="#networks" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>1.1 Networks – HTTP/S, DNS</span>
-                        </a>
-                        <a href="#cli" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>1.2 Command Line (CLI)</span>
-                        </a>
-                        <a href="#ide" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>1.3 IDE – VS Code setup</span>
-                        </a>
-                        <a href="#git" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>1.4 Version Control - Git</span>
-                        </a>
-                    </div>
-                    
-                    <a href="#" onclick="navigateToTutorial('frontend-basics')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
-                        <span>2. Frontend Basics</span>
-                    </a>
-                    
-                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                        <a href="#html" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>2.1 HTML – Structure & semantic tags</span>
-                        </a>
-                        <a href="#css" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>2.2 CSS – Styling, flex, grid</span>
-                        </a>
-                        <a href="#javascript" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>2.3 JavaScript – DOM, events</span>
-                        </a>
-                    </div>
-                    
-                    <a href="#" onclick="navigateToTutorial('ui-frameworks')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
-                        <span>3. UI Frameworks</span>
-                    </a>
-                    
-                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                        <a href="#bootstrap" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>3.1 Bootstrap – Responsive design</span>
-                        </a>
-                        <a href="#tailwind" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>3.2 Tailwind CSS – Utility-first</span>
-                        </a>
-                    </div>
-                    
-                    <a href="#" onclick="navigateToTutorial('js-ecosystem')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
-                        <span>4. JS Ecosystem</span>
-                    </a>
-                    
-                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                        <a href="#nodejs" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>4.1 Node.js – Runtime environment</span>
-                        </a>
-                        <a href="#npm" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>4.2 NPM – Package management</span>
-                        </a>
-                        <a href="#bundlers" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>4.3 Bundlers – Webpack, Vite</span>
-                        </a>
-                    </div>
-                    
-                    <a href="#" onclick="navigateToTutorial('interactive-frontend')" class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50">
-                        <span>5. Interactive Frontend</span>
-                    </a>
-                    
-                    <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                        <a href="#react" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>5.1 React.js – JSX, components</span>
-                        </a>
-                        <a href="#react-hooks" class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50">
-                            <span>5.2 Props, state, hooks</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-16 w-72 h-full bg-white shadow-lg z-30 transform transition-transform duration-300 hidden md:block"
+    >
+      <div class="p-4 h-full flex flex-col">
+        <button
+          id="sidebar-toggle"
+          class="mb-4 p-2 hover:bg-gray-100 rounded-lg transition-colors flex items-center justify-center w-10 h-10"
+        >
+          <i class="fas fa-chevron-left text-gray-600"></i>
+        </button>
+
+        <!-- Tutorial Navigation -->
+        <nav class="space-y-1 flex-1 overflow-y-auto sidebar-scroll">
+          <h3
+            class="sidebar-category font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide"
+          >
+            Learning Path
+          </h3>
+
+          <div class="space-y-1">
+            <a
+              href="#"
+              onclick="navigateToTutorial('core-concepts')"
+              class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50"
+            >
+              <span>1. Core Concepts</span>
+            </a>
+
+            <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+              <a
+                href="#networks"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>1.1 Networks – HTTP/S, DNS</span>
+              </a>
+              <a
+                href="#cli"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>1.2 Command Line (CLI)</span>
+              </a>
+              <a
+                href="#ide"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>1.3 IDE – VS Code setup</span>
+              </a>
+              <a
+                href="#git"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>1.4 Version Control - Git</span>
+              </a>
+            </div>
+
+            <a
+              href="#"
+              onclick="navigateToTutorial('frontend-basics')"
+              class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50"
+            >
+              <span>2. Frontend Basics</span>
+            </a>
+
+            <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+              <a
+                href="#html"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>2.1 HTML – Structure & semantic tags</span>
+              </a>
+              <a
+                href="#css"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>2.2 CSS – Styling, flex, grid</span>
+              </a>
+              <a
+                href="#javascript"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>2.3 JavaScript – DOM, events</span>
+              </a>
+            </div>
+
+            <a
+              href="#"
+              onclick="navigateToTutorial('ui-frameworks')"
+              class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50"
+            >
+              <span>3. UI Frameworks</span>
+            </a>
+
+            <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+              <a
+                href="#bootstrap"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>3.1 Bootstrap – Responsive design</span>
+              </a>
+              <a
+                href="#tailwind"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>3.2 Tailwind CSS – Utility-first</span>
+              </a>
+            </div>
+
+            <a
+              href="#"
+              onclick="navigateToTutorial('js-ecosystem')"
+              class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50"
+            >
+              <span>4. JS Ecosystem</span>
+            </a>
+
+            <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+              <a
+                href="#nodejs"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>4.1 Node.js – Runtime environment</span>
+              </a>
+              <a
+                href="#npm"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>4.2 NPM – Package management</span>
+              </a>
+              <a
+                href="#bundlers"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>4.3 Bundlers – Webpack, Vite</span>
+              </a>
+            </div>
+
+            <a
+              href="#"
+              onclick="navigateToTutorial('interactive-frontend')"
+              class="sidebar-item sidebar-category block px-3 py-2 text-sm text-gray-700 rounded-lg transition-colors hover:bg-purple-50"
+            >
+              <span>5. Interactive Frontend</span>
+            </a>
+
+            <div class="ml-3 border-l border-gray-200 pl-3 space-y-1">
+              <a
+                href="#react"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>5.1 React.js – JSX, components</span>
+              </a>
+              <a
+                href="#react-hooks"
+                class="sidebar-item block px-3 py-1 text-sm text-gray-600 rounded-lg transition-colors hover:bg-gray-50"
+              >
+                <span>5.2 Props, state, hooks</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
     </aside>
 
     <!-- Accessibility Panel -->
-    <div id="accessibility-panel" class="fixed top-0 right-0 w-96 h-full bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
-        <div class="p-6">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-xl font-bold text-gray-900">Accessibility Settings</h2>
-                <button id="accessibility-close" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <i class="fas fa-times text-gray-600"></i>
-                </button>
-            </div>
-            
-            <!-- Dark Mode Toggle -->
-            <div class="mb-6">
-                <h3 class="font-semibold text-gray-900 mb-3">Theme</h3>
-                <div class="flex items-center space-x-3">
-                    <button id="light-theme" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Light</button>
-                    <button id="dark-theme" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Dark</button>
-                </div>
-            </div>
-            
-            <!-- Color Variants -->
-            <div class="mb-6">
-                <h3 class="font-semibold text-gray-900 mb-3">Color Scheme</h3>
-                <div class="grid grid-cols-3 gap-2">
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="purple">
-                        <div class="w-full h-4 bg-gradient-to-r from-purple-700 to-purple-500 rounded"></div>
-                        <span class="text-xs mt-1 block">Purple</span>
-                    </button>
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="blue">
-                        <div class="w-full h-4 bg-blue-500 rounded"></div>
-                        <span class="text-xs mt-1 block">Blue</span>
-                    </button>
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="lime">
-                        <div class="w-full h-4 bg-lime-400 rounded"></div>
-                        <span class="text-xs mt-1 block">Lime</span>
-                    </button>
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="cyan">
-                        <div class="w-full h-4 bg-cyan-400 rounded"></div>
-                        <span class="text-xs mt-1 block">Cyan</span>
-                    </button>
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="orange">
-                        <div class="w-full h-4 bg-orange-500 rounded"></div>
-                        <span class="text-xs mt-1 block">Orange</span>
-                    </button>
-                    <button class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors" data-scheme="pink">
-                        <div class="w-full h-4 bg-pink-500 rounded"></div>
-                        <span class="text-xs mt-1 block">Pink</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Font Size Controls -->
-            <div class="mb-6">
-                <h3 class="font-semibold text-gray-900 mb-3">Font Size</h3>
-                <div class="flex items-center space-x-3">
-                    <button id="font-decrease" class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <span id="font-size-display" class="px-4 py-2 bg-gray-50 rounded-lg">100%</span>
-                    <button id="font-increase" class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button id="font-reset" class="px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors">Reset</button>
-                </div>
-            </div>
-            
-            <!-- Contrast Toggle -->
-            <div class="mb-6">
-                <h3 class="font-semibold text-gray-900 mb-3">Contrast</h3>
-                <div class="flex items-center space-x-3">
-                    <button id="normal-contrast" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">Normal</button>
-                    <button id="high-contrast" class="px-4 py-2 bg-gray-100 rounded-lg transition-colors">High</button>
-                </div>
-            </div>
+    <div
+      id="accessibility-panel"
+      class="fixed top-0 right-0 w-96 h-full bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto"
+    >
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900">
+            Accessibility Settings
+          </h2>
+          <button
+            id="accessibility-close"
+            class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <i class="fas fa-times text-gray-600"></i>
+          </button>
         </div>
+
+        <!-- Dark Mode Toggle -->
+        <div class="mb-6">
+          <h3 class="font-semibold text-gray-900 mb-3">Theme</h3>
+          <div class="flex items-center space-x-3">
+            <button
+              id="light-theme"
+              class="px-4 py-2 bg-gray-100 rounded-lg transition-colors"
+            >
+              Light
+            </button>
+            <button
+              id="dark-theme"
+              class="px-4 py-2 bg-gray-100 rounded-lg transition-colors"
+            >
+              Dark
+            </button>
+          </div>
+        </div>
+
+        <!-- Color Variants -->
+        <div class="mb-6">
+          <h3 class="font-semibold text-gray-900 mb-3">Color Scheme</h3>
+          <div class="grid grid-cols-3 gap-2">
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="purple"
+            >
+              <div
+                class="w-full h-4 bg-gradient-to-r from-purple-700 to-purple-500 rounded"
+              ></div>
+              <span class="text-xs mt-1 block">Purple</span>
+            </button>
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="blue"
+            >
+              <div class="w-full h-4 bg-blue-500 rounded"></div>
+              <span class="text-xs mt-1 block">Blue</span>
+            </button>
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="lime"
+            >
+              <div class="w-full h-4 bg-lime-400 rounded"></div>
+              <span class="text-xs mt-1 block">Lime</span>
+            </button>
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="cyan"
+            >
+              <div class="w-full h-4 bg-cyan-400 rounded"></div>
+              <span class="text-xs mt-1 block">Cyan</span>
+            </button>
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="orange"
+            >
+              <div class="w-full h-4 bg-orange-500 rounded"></div>
+              <span class="text-xs mt-1 block">Orange</span>
+            </button>
+            <button
+              class="color-variant p-3 border-2 border-transparent rounded-lg transition-colors"
+              data-scheme="pink"
+            >
+              <div class="w-full h-4 bg-pink-500 rounded"></div>
+              <span class="text-xs mt-1 block">Pink</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Font Size Controls -->
+        <div class="mb-6">
+          <h3 class="font-semibold text-gray-900 mb-3">Font Size</h3>
+          <div class="flex items-center space-x-3">
+            <button
+              id="font-decrease"
+              class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <span id="font-size-display" class="px-4 py-2 bg-gray-50 rounded-lg"
+              >100%</span
+            >
+            <button
+              id="font-increase"
+              class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+            <button
+              id="font-reset"
+              class="px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Contrast Toggle -->
+        <div class="mb-6">
+          <h3 class="font-semibold text-gray-900 mb-3">Contrast</h3>
+          <div class="flex items-center space-x-3">
+            <button
+              id="normal-contrast"
+              class="px-4 py-2 bg-gray-100 rounded-lg transition-colors"
+            >
+              Normal
+            </button>
+            <button
+              id="high-contrast"
+              class="px-4 py-2 bg-gray-100 rounded-lg transition-colors"
+            >
+              High
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Login Panel -->
-    <div id="login-panel" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30">
-        <div class="container mx-auto px-4 py-6">
-            <div class="max-w-md mx-auto">
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Login</h3>
-                <form class="space-y-4">
-                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <input type="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">Login</button>
-                </form>
-            </div>
+    <div
+      id="login-panel"
+      class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30"
+    >
+      <div class="container mx-auto px-4 py-6">
+        <div class="max-w-md mx-auto">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Login</h3>
+          <form class="space-y-4">
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <button
+              type="submit"
+              class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors"
+            >
+              Login
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Signup Panel -->
-    <div id="signup-panel" class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30">
-        <div class="container mx-auto px-4 py-6">
-            <div class="max-w-md mx-auto">
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Sign Up</h3>
-                <form class="space-y-4">
-                    <input type="text" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <input type="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">Sign Up</button>
-                </form>
-            </div>
+    <div
+      id="signup-panel"
+      class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-30"
+    >
+      <div class="container mx-auto px-4 py-6">
+        <div class="max-w-md mx-auto">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Sign Up</h3>
+          <form class="space-y-4">
+            <input
+              type="text"
+              placeholder="Name"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+            <button
+              type="submit"
+              class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors"
+            >
+              Sign Up
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Main Content Area -->
     <div id="main-content" class="transition-all duration-300 ml-72 pt-16">
-        <!-- Content will be loaded here -->
+      <!-- Content will be loaded here -->
     </div>
 
-    <script src="script/script.js"></script>
-</body>
+    <script src="assets/script/script.js"></script>
+  </body>
 </html>
 `
