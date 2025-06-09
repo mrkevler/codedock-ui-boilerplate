@@ -1,0 +1,710 @@
+<!-- Tutorials Page Content -->
+<div class="py-8">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        Web Development Tutorials
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Comprehensive tutorials following our structured learning path. Master
+        web development from core concepts to advanced frameworks.
+      </p>
+    </div>
+
+    <!-- Core Concepts Tutorial Content -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Core Concepts
+      </h2>
+
+      <!-- Module 1: Code with Terminal Output -->
+      <div class="two-column-code-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Git Version Control Setup</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Content and Code -->
+          <div class="space-y-4">
+            <div class="prose">
+              <p class="text-gray-600">
+                Git is a distributed version control system that tracks changes
+                in your code. Let's initialize a new repository and make our
+                first commit.
+              </p>
+              <p class="text-gray-600">
+                Version control is
+                <span class="accent-text">essential</span> for any development
+                project.
+              </p>
+            </div>
+
+            <!-- Code Snippet with Copy -->
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>Git Commands</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment"># Initialize a new Git repository</span>
+git init
+
+<span class="syntax-comment"># Add all files to staging</span>
+git add .
+
+<span class="syntax-comment"># Make your first commit</span>
+git commit -m <span class="syntax-string">"Initial commit"</span>
+
+<span class="syntax-comment"># Check repository status</span>
+git status</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Terminal Output -->
+          <div>
+            <div class="terminal-output">
+              <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+                <span class="text-sm text-gray-400 ml-3">Terminal</span>
+              </div>
+              <div class="terminal-content">
+                <pre><span class="terminal-prompt">user@hostname:~/project$</span> git init
+Initialized empty Git repository in /home/user/project/.git/
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git add .
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git commit -m "Initial commit"
+[main (root-commit) f7a234d] Initial commit
+ 3 files changed, 125 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 styles.css
+ create mode 100644 script.js
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git status
+On branch main
+nothing to commit, working tree clean
+<span class="terminal-prompt">user@hostname:~/project$</span><span class="cursor">_</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: Theory with Code Example -->
+      <div class="two-column-theory-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">JavaScript Functions Deep Dive</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Theory -->
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Theory</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                Functions are reusable blocks of code that perform specific
+                tasks. They help organize code, reduce repetition, and make
+                programs more maintainable.
+              </p>
+              <p class="text-gray-600">
+                In JavaScript, functions are
+                <span class="accent-text">first-class objects</span>, meaning
+                they can be assigned to variables, passed as arguments, and
+                returned from other functions.
+              </p>
+            </div>
+
+            <!-- Custom List -->
+            <div>
+              <h5 class="font-semibold mb-3">Function Benefits:</h5>
+              <ul class="custom-list space-y-2">
+                <li>Code reusability and modularity</li>
+                <li>Easier debugging and testing</li>
+                <li>Improved code organization</li>
+                <li>Reduced code duplication</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right: Code Example -->
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Practice</h4>
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>JavaScript Functions</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment">// Function declaration</span>
+<span class="syntax-keyword">function</span> <span class="syntax-function">calculateArea</span>(length, width) {
+    <span class="syntax-keyword">return</span> length * width;
+}
+
+<span class="syntax-comment">// Arrow function</span>
+<span class="syntax-keyword">const</span> <span class="syntax-variable">multiply</span> = (a, b) => a * b;
+
+<span class="syntax-comment">// Function with default parameters</span>
+<span class="syntax-keyword">function</span> <span class="syntax-function">greet</span>(name = <span class="syntax-string">"World"</span>) {
+    <span class="syntax-keyword">return</span> <span class="syntax-string">`Hello, ${name}!`</span>;
+}
+
+<span class="syntax-comment">// Usage examples</span>
+<span class="syntax-keyword">let</span> <span class="syntax-variable">area</span> = <span class="syntax-function">calculateArea</span>(<span class="syntax-number">10</span>, <span class="syntax-number">5</span>);
+<span class="syntax-keyword">let</span> <span class="syntax-variable">result</span> = <span class="syntax-function">multiply</span>(<span class="syntax-number">3</span>, <span class="syntax-number">4</span>);
+console.<span class="syntax-function">log</span>(<span class="syntax-function">greet</span>(<span class="syntax-string">"Developer"</span>));</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Blocks Examples -->
+      <div class="space-y-6 mb-8">
+        <!-- Important Note Block -->
+        <div class="important-block">
+          <div class="flex items-start">
+            <i class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-purple-800 mb-2">Important Note</h4>
+              <p class="text-sm">
+                Always use descriptive function names that clearly indicate what
+                the function does. This makes your code
+                <span class="accent-text">self-documenting</span> and easier to
+                understand.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pro Tip Block -->
+        <div class="tip-block">
+          <div class="flex items-start">
+            <i class="fas fa-lightbulb text-yellow-600 mr-3 mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-yellow-800 mb-2">Pro Tip</h4>
+              <p class="text-sm">
+                Use arrow functions for simple, one-line operations to make your
+                code more concise. However, be aware that arrow functions have
+                different <span class="accent-text">this</span> binding
+                behavior.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning Block -->
+        <div class="warning-block">
+          <div class="flex items-start">
+            <i
+              class="fas fa-exclamation-triangle text-orange-600 mr-3 mt-1"
+            ></i>
+            <div>
+              <h4 class="font-semibold text-orange-800 mb-2">Warning</h4>
+              <p class="text-sm">
+                Be careful with
+                <span class="accent-text">function hoisting</span> in
+                JavaScript. Function declarations are hoisted, but function
+                expressions and arrow functions are not.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note Block -->
+        <div class="note-block">
+          <div class="flex items-start">
+            <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-cyan-800 mb-2">Note</h4>
+              <p class="text-sm">
+                JavaScript is a dynamically typed language, which means you
+                don't need to specify variable types explicitly. The
+                <span class="accent-text">type is determined</span> at runtime.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote Block -->
+        <div class="blockquote-custom">
+          <p class="text-lg mb-4">
+            "Any fool can write code that a computer can understand. Good
+            programmers write code that humans can understand."
+          </p>
+          <cite class="text-sm text-gray-500">— Martin Fowler</cite>
+        </div>
+      </div>
+
+      <!-- Standalone Code Snippet -->
+      <div class="mb-8">
+        <h3 class="text-xl font-bold mb-4">Complete Example: Event Handling</h3>
+        <div class="code-snippet">
+          <div class="code-header">
+            <span>Event Handling Example</span>
+            <button onclick="copyCode(this)" class="copy-btn">
+              <i class="fas fa-copy mr-2"></i>Copy
+            </button>
+          </div>
+          <div class="code-content">
+            <pre><code><span class="syntax-comment">// DOM manipulation and event handling</span>
+document.<span class="syntax-function">addEventListener</span>(<span class="syntax-string">'DOMContentLoaded'</span>, <span class="syntax-keyword">function</span>() {
+    <span class="syntax-keyword">const</span> <span class="syntax-variable">button</span> = document.<span class="syntax-function">getElementById</span>(<span class="syntax-string">'myButton'</span>);
+    <span class="syntax-keyword">const</span> <span class="syntax-variable">output</span> = document.<span class="syntax-function">getElementById</span>(<span class="syntax-string">'output'</span>);
+    
+    <span class="syntax-variable">button</span>.<span class="syntax-function">addEventListener</span>(<span class="syntax-string">'click'</span>, <span class="syntax-keyword">function</span>() {
+        <span class="syntax-variable">output</span>.textContent = <span class="syntax-string">'Button clicked!'</span>;
+        console.<span class="syntax-function">log</span>(<span class="syntax-string">'User interaction detected'</span>);
+    });
+});</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standalone Terminal Example -->
+      <div class="mb-8">
+        <h3 class="text-xl font-bold mb-4">Command Line Interface Example</h3>
+        <div class="terminal-output">
+          <div class="terminal-header">
+            <div class="terminal-button red"></div>
+            <div class="terminal-button yellow"></div>
+            <div class="terminal-button green"></div>
+            <span class="text-sm text-gray-400 ml-3">Terminal</span>
+          </div>
+          <div class="terminal-content">
+            <pre><span class="terminal-prompt">user@hostname:~$</span> npm init -y
+Wrote to /home/user/package.json:
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+<span class="terminal-prompt">user@hostname:~$</span> npm install express
+added 57 packages, and audited 58 packages in 3s
+
+<span class="terminal-prompt">user@hostname:~$</span> node --version
+v18.17.0
+<span class="terminal-prompt">user@hostname:~$</span><span class="cursor">_</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Tutorials -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Featured Tutorials
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Tutorial Card 1 -->
+        <div class="tutorial-card">
+          <div class="flex-1">
+            <div class="flex items-center mb-4">
+              <i class="fab fa-js-square text-3xl text-yellow-500 mr-3"></i>
+              <h3 class="text-xl font-bold text-gray-900">
+                JavaScript Fundamentals
+              </h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+              Learn the core concepts of JavaScript including variables,
+              functions, objects, and DOM manipulation.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500 mb-4"
+            >
+              <span><i class="fas fa-clock mr-1"></i> 4 hours</span>
+              <span><i class="fas fa-signal mr-1"></i> Beginner</span>
+            </div>
+          </div>
+          <button
+            class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors"
+          >
+            Start Tutorial
+          </button>
+        </div>
+
+        <!-- Tutorial Card 2 -->
+        <div class="tutorial-card">
+          <div class="flex-1">
+            <div class="flex items-center mb-4">
+              <i class="fab fa-html5 text-3xl text-orange-500 mr-3"></i>
+              <h3 class="text-xl font-bold text-gray-900">
+                HTML & CSS Mastery
+              </h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+              Build semantic, accessible websites with modern HTML5 and CSS3
+              including flexbox and grid layouts.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500 mb-4"
+            >
+              <span><i class="fas fa-clock mr-1"></i> 6 hours</span>
+              <span><i class="fas fa-signal mr-1"></i> Beginner</span>
+            </div>
+          </div>
+          <button
+            class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors"
+          >
+            Start Tutorial
+          </button>
+        </div>
+
+        <!-- Tutorial Card 3 -->
+        <div class="tutorial-card">
+          <div class="flex-1">
+            <div class="flex items-center mb-4">
+              <i class="fab fa-react text-3xl text-cyan-500 mr-3"></i>
+              <h3 class="text-xl font-bold text-gray-900">React Development</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+              Build modern web applications with React.js components, hooks, and
+              state management.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500 mb-4"
+            >
+              <span><i class="fas fa-clock mr-1"></i> 8 hours</span>
+              <span><i class="fas fa-signal mr-1"></i> Advanced</span>
+            </div>
+          </div>
+          <button
+            class="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors"
+          >
+            Start Tutorial
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="py-16 bg-gray-50 rounded-2xl">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+          Choose Your Learning Path
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Frontend Path -->
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <div class="text-center mb-6">
+              <i class="fas fa-laptop-code text-4xl text-purple-700 mb-4"></i>
+              <h3 class="text-2xl font-bold text-gray-900">
+                Frontend Developer
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Build beautiful and interactive user interfaces
+              </p>
+            </div>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>HTML & CSS Fundamentals</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>JavaScript & ES6+</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>React or Vue.js</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>Responsive Design</span>
+              </li>
+            </ul>
+            <button
+              class="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-800 transition-colors"
+            >
+              Start Frontend Path
+            </button>
+          </div>
+
+          <!-- Full Stack Path -->
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <div class="text-center mb-6">
+              <i class="fas fa-server text-4xl text-purple-700 mb-4"></i>
+              <h3 class="text-2xl font-bold text-gray-900">
+                Full Stack Developer
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Master both frontend and backend development
+              </p>
+            </div>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>Frontend Technologies</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>Node.js & TypeScript</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>Database Design</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                <span>API Development</span>
+              </li>
+            </ul>
+            <button
+              class="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-800 transition-colors"
+            >
+              Start Full Stack Path
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frontend Basics Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Frontend Basics
+      </h2>
+
+      <div class="two-column-code-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">HTML Structure & Semantic Tags</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div class="prose">
+              <p class="text-gray-600">
+                HTML provides the structure and meaning to web content. Semantic
+                tags help screen readers and search engines understand your
+                content better.
+              </p>
+              <p class="text-gray-600">
+                Using <span class="accent-text">semantic HTML</span> is crucial
+                for accessibility and SEO.
+              </p>
+            </div>
+
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>Semantic HTML Example</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-keyword">&lt;header&gt;</span>
+    <span class="syntax-keyword">&lt;nav&gt;</span>
+        <span class="syntax-keyword">&lt;ul&gt;</span>
+            <span class="syntax-keyword">&lt;li&gt;</span><span class="syntax-keyword">&lt;a</span> <span class="syntax-variable">href</span>=<span class="syntax-string">"/"</span><span class="syntax-keyword">&gt;</span>Home<span class="syntax-keyword">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="syntax-keyword">&lt;/ul&gt;</span>
+    <span class="syntax-keyword">&lt;/nav&gt;</span>
+<span class="syntax-keyword">&lt;/header&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="terminal-output">
+              <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+                <span class="text-sm text-gray-400 ml-3">Browser DevTools</span>
+              </div>
+              <div class="terminal-content">
+                <pre><span class="terminal-prompt">Elements</span>
+<span style="color: #10b981;">✓ Accessibility tree built</span>
+<span style="color: #10b981;">✓ SEO meta tags detected</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI Frameworks Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        UI Frameworks
+      </h2>
+
+      <div class="two-column-theory-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Bootstrap vs Tailwind CSS</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Bootstrap Framework</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                Bootstrap provides pre-built components and a responsive grid
+                system. It's
+                <span class="accent-text">component-based</span> and comes with
+                JavaScript functionality.
+              </p>
+            </div>
+
+            <div class="important-block">
+              <div class="flex items-start">
+                <i
+                  class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-purple-800 mb-2">
+                    Bootstrap Advantage
+                  </h4>
+                  <p class="text-sm">
+                    Rapid prototyping with pre-built components.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Tailwind CSS</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                Tailwind is a
+                <span class="accent-text">utility-first</span> framework that
+                gives you complete design control.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JS Ecosystem Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        JavaScript Ecosystem
+      </h2>
+
+      <div class="two-column-code-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Package Management with npm</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div class="prose">
+              <p class="text-gray-600">
+                npm (Node Package Manager) helps manage dependencies and scripts
+                for your JavaScript projects.
+              </p>
+              <p class="text-gray-600">
+                Understanding <span class="accent-text">package.json</span> is
+                essential for modern JavaScript development.
+              </p>
+            </div>
+
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>npm Commands</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment"># Initialize project</span>
+npm init -y
+
+<span class="syntax-comment"># Install dependencies</span>
+npm install express lodash</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="terminal-output">
+              <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+                <span class="text-sm text-gray-400 ml-3">Terminal</span>
+              </div>
+              <div class="terminal-content">
+                <pre><span class="terminal-prompt">user@hostname:~/project$</span> npm init -y
+Wrote to package.json
+
+<span class="terminal-prompt">user@hostname:~/project$</span> npm install express
+added 57 packages in 3.2s</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Frontend Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Interactive Frontend
+      </h2>
+
+      <div class="two-column-theory-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">
+          DOM Manipulation & Event Handling
+        </h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Theory</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                The Document Object Model (DOM) represents the structure of your
+                HTML document. JavaScript can manipulate this structure to
+                create <span class="accent-text">dynamic interactions</span>.
+              </p>
+            </div>
+
+            <div>
+              <h5 class="font-semibold mb-3">Key DOM Methods:</h5>
+              <ul class="custom-list space-y-2">
+                <li>document.getElementById()</li>
+                <li>document.querySelector()</li>
+                <li>element.addEventListener()</li>
+                <li>element.createElement()</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Practice</h4>
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>Interactive Elements</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment">// Event handling</span>
+<span class="syntax-keyword">const</span> <span class="syntax-variable">button</span> = document.<span class="syntax-function">getElementById</span>(<span class="syntax-string">'btn'</span>);
+<span class="syntax-variable">button</span>.<span class="syntax-function">addEventListener</span>(<span class="syntax-string">'click'</span>, <span class="syntax-keyword">function</span>() {
+    console.<span class="syntax-function">log</span>(<span class="syntax-string">'Clicked!'</span>);
+});</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <div class="flex items-start">
+          <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
+          <div>
+            <h4 class="font-semibold text-cyan-800 mb-2">Modern Frameworks</h4>
+            <p class="text-sm">
+              Modern frameworks like
+              <span class="accent-text">React, Vue, and Angular</span> provide
+              more efficient ways to build complex interactive applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

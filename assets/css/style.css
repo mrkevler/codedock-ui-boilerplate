@@ -1,3 +1,4 @@
+/* CodeDock UI Boilerplate */
 :root {
   /* Color Palette */
   --purple: #7e22ce;
@@ -246,28 +247,6 @@ body {
 }
 
 /* Content Blocks */
-.note-block,
-.tip-block,
-.important-block,
-.warning-block,
-.blockquote-custom,
-.quote-block {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 1rem 0;
-}
-
-.note-block > *,
-.tip-block > *,
-.important-block > *,
-.warning-block > *,
-.blockquote-custom > *,
-.quote-block > * {
-  position: relative;
-  z-index: 3;
-}
-
 .note-block {
   background: linear-gradient(
     135deg,
@@ -277,6 +256,7 @@ body {
   border-left: 4px solid var(--cyan);
   padding: 1rem 1.5rem;
   border-radius: 8px;
+  margin: 1rem 0;
 }
 
 .tip-block {
@@ -288,6 +268,7 @@ body {
   border-left: 4px solid var(--lime-green);
   padding: 1rem 1.5rem;
   border-radius: 8px;
+  margin: 1rem 0;
 }
 
 .important-block {
@@ -299,6 +280,7 @@ body {
   border-left: 4px solid var(--purple);
   padding: 1rem 1.5rem;
   border-radius: 8px;
+  margin: 1rem 0;
 }
 
 .warning-block {
@@ -310,85 +292,20 @@ body {
   border-left: 4px solid var(--orange);
   padding: 1rem 1.5rem;
   border-radius: 8px;
+  margin: 1rem 0;
 }
 
-.blockquote-custom,
-.quote-block {
+.blockquote-custom {
   background: linear-gradient(
     135deg,
     rgba(126, 34, 206, 0.05),
     rgba(126, 34, 206, 0.02)
   );
-  border-left: 4px solid var(--purple);
+  border-right: 4px solid var(--purple);
   padding: 1.5rem 2rem;
   border-radius: 8px;
   font-style: italic;
-}
-
-/* Content blocks hover effects */
-.note-block::before,
-.tip-block::before,
-.important-block::before,
-.warning-block::before,
-.blockquote-custom::before,
-.quote-block::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--purple), var(--lime-green));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.note-block::after,
-.tip-block::after,
-.important-block::after,
-.warning-block::after,
-.blockquote-custom::after,
-.quote-block::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(126, 34, 206, 0.05);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.note-block:hover::before,
-.tip-block:hover::before,
-.important-block:hover::before,
-.warning-block:hover::before,
-.blockquote-custom:hover::before,
-.quote-block:hover::before {
-  opacity: 1;
-}
-
-.note-block:hover::after,
-.tip-block:hover::after,
-.important-block:hover::after,
-.warning-block:hover::after,
-.blockquote-custom:hover::after,
-.quote-block:hover::after {
-  opacity: 1;
-}
-
-.note-block:hover,
-.tip-block:hover,
-.important-block:hover,
-.warning-block:hover,
-.blockquote-custom:hover,
-.quote-block:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(126, 34, 206, 0.15);
+  margin: 1.5rem 0;
 }
 
 /* Code Snippets */
@@ -464,23 +381,6 @@ body {
 .terminal-prompt {
   color: var(--lime-green);
   font-weight: 600;
-}
-
-/* Blinking cursor animation */
-.cursor {
-  animation: blink 1.5s infinite;
-  color: var(--lime-green);
-}
-
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
 }
 
 /* Syntax Highlighting */
@@ -994,7 +894,7 @@ body {
   }
 }
 
-/* MOBILE DROPDOWN STYLES - COMMENTED OUT FOR FUTURE DEVELOPMENT */
+/* MOBILE DROPDOWN STYLES -FOR FUTURE DEVELOPMENT */
 /*
 .mobile-dropdown {
     display: none;

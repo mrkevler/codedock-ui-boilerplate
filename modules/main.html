@@ -14,49 +14,64 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4">
-            <a href="/" class="hover:text-purple-400 transition-colors"
+            <a
+              href="#"
+              onclick="showPage('home')"
+              class="hover:text-purple-300 transition-colors"
               >CodeDock UI</a
             >
           </h3>
           <p class="text-gray-400">
-            Minimal and customizable interface template built for programming
+            Minimal and customizable interface template build for programming
             learning purposes.
           </p>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">Tutorials</h4>
+          <h4 class="font-semibold mb-4">
+            <a
+              href="#"
+              onclick="showPage('tutorials')"
+              class="hover:text-white transition-colors"
+              >Tutorials</a
+            >
+          </h4>
           <ul class="space-y-2 text-gray-400">
             <li>
               <a
-                href="javascript:navigateToTutorial('core-concepts')"
+                href="#"
+                onclick="navigateToTutorial('core-concepts')"
                 class="hover:text-white transition-colors"
-                >JavaScript → Core Concepts</a
+                >Core Concepts</a
               >
             </li>
             <li>
               <a
-                href="javascript:navigateToTutorial('frontend-basics')"
+                href="#"
+                onclick="navigateToTutorial('frontend-basics')"
                 class="hover:text-white transition-colors"
-                >Python → Frontend Basics</a
+                >Frontend Basics</a
               >
             </li>
             <li>
               <a
-                href="javascript:navigateToTutorial('ui-frameworks')"
+                href="#"
+                onclick="navigateToTutorial('ui-frameworks')"
                 class="hover:text-white transition-colors"
-                >React → UI Frameworks</a
+                >UI Frameworks</a
               >
             </li>
             <li>
               <a
-                href="javascript:navigateToTutorial('js-ecosystem')"
+                href="#"
+                onclick="navigateToTutorial('js-ecosystem')"
                 class="hover:text-white transition-colors"
-                >Node.js → JS Ecosystem</a
+                >JS Ecosystem</a
               >
             </li>
             <li>
               <a
-                href="javascript:navigateToTutorial('interactive-frontend')"
+                href="#"
+                onclick="navigateToTutorial('interactive-frontend')"
                 class="hover:text-white transition-colors"
                 >Interactive Frontend</a
               >
@@ -67,11 +82,17 @@
           <h4 class="font-semibold mb-4">Resources</h4>
           <ul class="space-y-2 text-gray-400">
             <li>
-              <a href="/" class="hover:text-white transition-colors">Home</a>
+              <a
+                href="#"
+                onclick="showPage('home')"
+                class="hover:text-white transition-colors"
+                >Home</a
+              >
             </li>
             <li>
               <a
-                href="javascript:showPage('tutorials')"
+                href="#"
+                onclick="showPage('tutorials')"
                 class="hover:text-white transition-colors"
                 >Tutorials</a
               >
@@ -80,7 +101,6 @@
               <a
                 href="https://bartoszsergot.com"
                 target="_blank"
-                rel="nofollow"
                 class="hover:text-white transition-colors"
                 >Authors</a
               >
@@ -98,7 +118,6 @@
             <a
               href="https://github.com/mrkevler/"
               target="_blank"
-              rel="nofollow"
               class="text-gray-400 hover:text-white transition-colors"
             >
               <i class="fab fa-github text-xl"></i>
@@ -106,7 +125,6 @@
             <a
               href="https://linkedin.com/in/bartosz-sergot"
               target="_blank"
-              rel="nofollow"
               class="text-gray-400 hover:text-white transition-colors"
             >
               <i class="fab fa-linkedin text-xl"></i>
@@ -114,7 +132,6 @@
             <a
               href="https://bartoszsergot.com/"
               target="_blank"
-              rel="nofollow"
               class="text-gray-400 hover:text-white transition-colors"
             >
               <i class="fas fa-globe text-xl"></i>
@@ -124,12 +141,17 @@
       </div>
       <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
         <p>
-          &copy; <span id="current-year"></span> &lt;/&gt; CodeDock UI
+          &copy; <span id="current-year"></span>
+          <a
+            href="#"
+            onclick="showPage('home')"
+            class="text-purple-400 hover:text-purple-300 transition-colors"
+            >&lt;/&gt; CodeDock UI</a
+          >
           Boilerplate by
           <a
             href="https://bartoszsergot.com"
             target="_blank"
-            rel="nofollow"
             class="text-purple-400 hover:text-purple-300 transition-colors"
             >mrKevler</a
           >. All rights reserved.
