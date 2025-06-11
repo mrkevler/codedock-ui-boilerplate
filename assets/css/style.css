@@ -499,6 +499,47 @@ body {
   .two-column-module {
     padding: 1.5rem;
   }
+
+  /* Mobile layout fixes */
+  #main-content {
+    margin-left: 0 !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ensure container doesn't overflow */
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Text should wrap properly */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Hero section mobile adjustments */
+  .hero-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Two column modules should stack on mobile */
+  .two-column-module,
+  .two-column-code-module,
+  .two-column-theory-module {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* Color scheme variants */
@@ -848,16 +889,28 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px var(--shadow-color);
-  z-index: 50;
+  z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.2s ease;
+}
+
+/* Mobile dropdown specific positioning */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: fixed;
+    top: 64px;
+    right: 8px;
+    left: auto;
+    z-index: 1000;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
 }
 
 .dropdown-menu.show {
@@ -893,59 +946,6 @@ body {
     display: none;
   }
 }
-
-/* MOBILE DROPDOWN STYLES -FOR FUTURE DEVELOPMENT */
-/*
-.mobile-dropdown {
-    display: none;
-    position: fixed;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    max-height: calc(100vh - 64px);
-    overflow-y: auto;
-}
-
-.mobile-dropdown.active {
-    transform: translateY(0);
-}
-
-.mobile-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.mobile-overlay.active {
-    display: block;
-}
-
-Show mobile elements only on mobile
-@media (max-width: 767px) {
-    .mobile-dropdown {
-        display: block;
-    }
-}
-
-Hide mobile elements on desktop
-@media (min-width: 768px) {
-    .mobile-dropdown {
-        display: none !important;
-    }
-    
-    .mobile-overlay {
-        display: none !important;
-    }
-}
-*/
 
 /* Tutorial Module Styles */
 .two-column-code-module {

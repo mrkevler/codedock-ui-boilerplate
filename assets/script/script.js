@@ -71,33 +71,33 @@ class TutorialApp {
       });
 
     // Login/Signup panels
-    document.getElementById("login-toggle").addEventListener("click", (e) => {
-      e.preventDefault();
-      this.togglePanel("login-panel");
-    });
-
     document.getElementById("signup-toggle").addEventListener("click", (e) => {
       e.preventDefault();
       this.togglePanel("signup-panel");
     });
 
-    // Mobile Login/Signup panels
-    const mobileLoginBtn = document.getElementById("mobile-login-toggle");
-    const mobileSignupBtn = document.getElementById("mobile-signup-toggle");
+    document.getElementById("login-toggle").addEventListener("click", (e) => {
+      e.preventDefault();
+      this.togglePanel("login-panel");
+    });
 
-    if (mobileLoginBtn) {
-      mobileLoginBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        toggleMobileMenu();
-        this.togglePanel("login-panel");
-      });
-    }
+    // Mobile Login/Signup panels
+    const mobileLoginBtn = document.getElementById("mobile-signup-toggle");
+    const mobileSignupBtn = document.getElementById("mobile-login-toggle");
 
     if (mobileSignupBtn) {
       mobileSignupBtn.addEventListener("click", (e) => {
         e.preventDefault();
         toggleMobileMenu();
         this.togglePanel("signup-panel");
+      });
+    }
+
+    if (mobileLoginBtn) {
+      mobileLoginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleMobileMenu();
+        this.togglePanel("login-panel");
       });
     }
 
@@ -162,17 +162,17 @@ class TutorialApp {
       }
 
       if (
-        !e.target.closest("#login-panel") &&
-        !e.target.closest("#login-toggle")
-      ) {
-        this.closePanel("login-panel");
-      }
-
-      if (
         !e.target.closest("#signup-panel") &&
         !e.target.closest("#signup-toggle")
       ) {
         this.closePanel("signup-panel");
+      }
+
+      if (
+        !e.target.closest("#login-panel") &&
+        !e.target.closest("#login-toggle")
+      ) {
+        this.closePanel("login-panel");
       }
     });
   }
@@ -268,8 +268,8 @@ class TutorialApp {
     if (this.sidebarCollapsed) {
       sidebar.classList.remove("w-72");
       sidebar.classList.add("w-16");
-      mainContent.classList.remove("ml-72");
-      mainContent.classList.add("ml-16");
+      mainContent.classList.remove("md:ml-72");
+      mainContent.classList.add("md:ml-16");
       icon.classList.remove("fa-chevron-left");
       icon.classList.add("fa-chevron-right");
 
@@ -278,8 +278,8 @@ class TutorialApp {
     } else {
       sidebar.classList.remove("w-16");
       sidebar.classList.add("w-72");
-      mainContent.classList.remove("ml-16");
-      mainContent.classList.add("ml-72");
+      mainContent.classList.remove("md:ml-16");
+      mainContent.classList.add("md:ml-72");
       icon.classList.remove("fa-chevron-right");
       icon.classList.add("fa-chevron-left");
 
@@ -548,30 +548,26 @@ function toggleTutorialsDropdown() {
   });
 }
 
-// MOBILE MENU FUNCTIONS - COMMENTED OUT FOR FUTURE DEVELOPMENT
-/*
 function toggleMobileMenu() {
-    const mobileNav = document.getElementById('mobile-nav');
-    const overlay = document.getElementById('mobile-overlay');
-    
-    mobileNav.classList.toggle('active');
-    overlay.classList.toggle('active');
-    
-    // Close when clicking overlay
-    overlay.addEventListener('click', () => {
-        mobileNav.classList.remove('active');
-        overlay.classList.remove('active');
-    });
+  const dropdown = document.getElementById("mobile-dropdown");
+  dropdown.classList.toggle("show");
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function closeMobileDropdown(e) {
+    if (
+      !e.target.closest("#mobile-dropdown") &&
+      !e.target.closest('button[onclick="toggleMobileMenu()"]')
+    ) {
+      dropdown.classList.remove("show");
+      document.removeEventListener("click", closeMobileDropdown);
+    }
+  });
 }
 
 function closeMobileMenu() {
-    const mobileNav = document.getElementById('mobile-nav');
-    const overlay = document.getElementById('mobile-overlay');
-    
-    mobileNav.classList.remove('active');
-    overlay.classList.remove('active');
+  const dropdown = document.getElementById("mobile-dropdown");
+  dropdown.classList.remove("show");
 }
-*/
 
 function navigateToTutorial(section) {
   // Close dropdown
@@ -581,8 +577,6 @@ function navigateToTutorial(section) {
   // Navigate to specific tutorial section
   showPage(section);
 
-  // TODO: In future, each section will have its own content
-  // For now, all sections lead to the tutorials page
 }
 
 // Export for global access

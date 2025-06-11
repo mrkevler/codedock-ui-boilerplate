@@ -1,2 +1,8 @@
 **/.DS_Store
+
+# My docs folder
 devdocs/
+
+# Backup files
+modules_backup.html
+
