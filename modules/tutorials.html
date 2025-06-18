@@ -11,293 +11,6 @@
       </p>
     </div>
 
-    <!-- Core Concepts Tutorial Content -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
-        Core Concepts
-      </h2>
-
-      <!-- Module 1: Code with Terminal Output -->
-      <div class="two-column-code-module mb-8">
-        <h3 class="text-2xl font-bold mb-6">Git Version Control Setup</h3>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Left: Content and Code -->
-          <div class="space-y-4">
-            <div class="prose">
-              <p class="text-gray-600">
-                Git is a distributed version control system that tracks changes
-                in your code. Let's initialize a new repository and make our
-                first commit.
-              </p>
-              <p class="text-gray-600">
-                Version control is
-                <span class="accent-text">essential</span> for any development
-                project.
-              </p>
-            </div>
-
-            <!-- Code Snippet with Copy -->
-            <div class="code-snippet">
-              <div class="code-header">
-                <span>Git Commands</span>
-                <button onclick="copyCode(this)" class="copy-btn">
-                  <i class="fas fa-copy mr-2"></i>Copy
-                </button>
-              </div>
-              <div class="code-content">
-                <pre><code><span class="syntax-comment"># Initialize a new Git repository</span>
-git init
-
-<span class="syntax-comment"># Add all files to staging</span>
-git add .
-
-<span class="syntax-comment"># Make your first commit</span>
-git commit -m <span class="syntax-string">"Initial commit"</span>
-
-<span class="syntax-comment"># Check repository status</span>
-git status</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Terminal Output -->
-          <div>
-            <div class="terminal-output">
-              <div class="terminal-header">
-                <div class="terminal-button red"></div>
-                <div class="terminal-button yellow"></div>
-                <div class="terminal-button green"></div>
-                <span class="text-sm text-gray-400 ml-3">Terminal</span>
-              </div>
-              <div class="terminal-content">
-                <pre><span class="terminal-prompt">user@hostname:~/project$</span> git init
-Initialized empty Git repository in /home/user/project/.git/
-
-<span class="terminal-prompt">user@hostname:~/project$</span> git add .
-
-<span class="terminal-prompt">user@hostname:~/project$</span> git commit -m "Initial commit"
-[main (root-commit) f7a234d] Initial commit
- 3 files changed, 125 insertions(+)
- create mode 100644 index.html
- create mode 100644 styles.css
- create mode 100644 script.js
-
-<span class="terminal-prompt">user@hostname:~/project$</span> git status
-On branch main
-nothing to commit, working tree clean
-<span class="terminal-prompt">user@hostname:~/project$</span><span class="cursor">_</span></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 2: Theory with Code Example -->
-      <div class="two-column-theory-module mb-8">
-        <h3 class="text-2xl font-bold mb-6">JavaScript Functions Deep Dive</h3>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Left: Theory -->
-          <div class="space-y-6">
-            <h4 class="text-xl font-bold">Theory</h4>
-            <div class="prose">
-              <p class="text-gray-600">
-                Functions are reusable blocks of code that perform specific
-                tasks. They help organize code, reduce repetition, and make
-                programs more maintainable.
-              </p>
-              <p class="text-gray-600">
-                In JavaScript, functions are
-                <span class="accent-text">first-class objects</span>, meaning
-                they can be assigned to variables, passed as arguments, and
-                returned from other functions.
-              </p>
-            </div>
-
-            <!-- Custom List -->
-            <div>
-              <h5 class="font-semibold mb-3">Function Benefits:</h5>
-              <ul class="custom-list space-y-2">
-                <li>Code reusability and modularity</li>
-                <li>Easier debugging and testing</li>
-                <li>Improved code organization</li>
-                <li>Reduced code duplication</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Right: Code Example -->
-          <div class="space-y-6">
-            <h4 class="text-xl font-bold">Practice</h4>
-            <div class="code-snippet">
-              <div class="code-header">
-                <span>JavaScript Functions</span>
-                <button onclick="copyCode(this)" class="copy-btn">
-                  <i class="fas fa-copy mr-2"></i>Copy
-                </button>
-              </div>
-              <div class="code-content">
-                <pre><code><span class="syntax-comment">// Function declaration</span>
-<span class="syntax-keyword">function</span> <span class="syntax-function">calculateArea</span>(length, width) {
-    <span class="syntax-keyword">return</span> length * width;
-}
-
-<span class="syntax-comment">// Arrow function</span>
-<span class="syntax-keyword">const</span> <span class="syntax-variable">multiply</span> = (a, b) => a * b;
-
-<span class="syntax-comment">// Function with default parameters</span>
-<span class="syntax-keyword">function</span> <span class="syntax-function">greet</span>(name = <span class="syntax-string">"World"</span>) {
-    <span class="syntax-keyword">return</span> <span class="syntax-string">`Hello, ${name}!`</span>;
-}
-
-<span class="syntax-comment">// Usage examples</span>
-<span class="syntax-keyword">let</span> <span class="syntax-variable">area</span> = <span class="syntax-function">calculateArea</span>(<span class="syntax-number">10</span>, <span class="syntax-number">5</span>);
-<span class="syntax-keyword">let</span> <span class="syntax-variable">result</span> = <span class="syntax-function">multiply</span>(<span class="syntax-number">3</span>, <span class="syntax-number">4</span>);
-console.<span class="syntax-function">log</span>(<span class="syntax-function">greet</span>(<span class="syntax-string">"Developer"</span>));</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Content Blocks Examples -->
-      <div class="space-y-6 mb-8">
-        <!-- Important Note Block -->
-        <div class="important-block">
-          <div class="flex items-start">
-            <i class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"></i>
-            <div>
-              <h4 class="font-semibold text-purple-800 mb-2">Important Note</h4>
-              <p class="text-sm">
-                Always use descriptive function names that clearly indicate what
-                the function does. This makes your code
-                <span class="accent-text">self-documenting</span> and easier to
-                understand.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pro Tip Block -->
-        <div class="tip-block">
-          <div class="flex items-start">
-            <i class="fas fa-lightbulb text-yellow-600 mr-3 mt-1"></i>
-            <div>
-              <h4 class="font-semibold text-yellow-800 mb-2">Pro Tip</h4>
-              <p class="text-sm">
-                Use arrow functions for simple, one-line operations to make your
-                code more concise. However, be aware that arrow functions have
-                different <span class="accent-text">this</span> binding
-                behavior.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Warning Block -->
-        <div class="warning-block">
-          <div class="flex items-start">
-            <i
-              class="fas fa-exclamation-triangle text-orange-600 mr-3 mt-1"
-            ></i>
-            <div>
-              <h4 class="font-semibold text-orange-800 mb-2">Warning</h4>
-              <p class="text-sm">
-                Be careful with
-                <span class="accent-text">function hoisting</span> in
-                JavaScript. Function declarations are hoisted, but function
-                expressions and arrow functions are not.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Note Block -->
-        <div class="note-block">
-          <div class="flex items-start">
-            <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
-            <div>
-              <h4 class="font-semibold text-cyan-800 mb-2">Note</h4>
-              <p class="text-sm">
-                JavaScript is a dynamically typed language, which means you
-                don't need to specify variable types explicitly. The
-                <span class="accent-text">type is determined</span> at runtime.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quote Block -->
-        <div class="blockquote-custom">
-          <p class="text-lg mb-4">
-            "Any fool can write code that a computer can understand. Good
-            programmers write code that humans can understand."
-          </p>
-          <cite class="text-sm text-gray-500">— Martin Fowler</cite>
-        </div>
-      </div>
-
-      <!-- Standalone Code Snippet -->
-      <div class="mb-8">
-        <h3 class="text-xl font-bold mb-4">Complete Example: Event Handling</h3>
-        <div class="code-snippet">
-          <div class="code-header">
-            <span>Event Handling Example</span>
-            <button onclick="copyCode(this)" class="copy-btn">
-              <i class="fas fa-copy mr-2"></i>Copy
-            </button>
-          </div>
-          <div class="code-content">
-            <pre><code><span class="syntax-comment">// DOM manipulation and event handling</span>
-document.<span class="syntax-function">addEventListener</span>(<span class="syntax-string">'DOMContentLoaded'</span>, <span class="syntax-keyword">function</span>() {
-    <span class="syntax-keyword">const</span> <span class="syntax-variable">button</span> = document.<span class="syntax-function">getElementById</span>(<span class="syntax-string">'myButton'</span>);
-    <span class="syntax-keyword">const</span> <span class="syntax-variable">output</span> = document.<span class="syntax-function">getElementById</span>(<span class="syntax-string">'output'</span>);
-    
-    <span class="syntax-variable">button</span>.<span class="syntax-function">addEventListener</span>(<span class="syntax-string">'click'</span>, <span class="syntax-keyword">function</span>() {
-        <span class="syntax-variable">output</span>.textContent = <span class="syntax-string">'Button clicked!'</span>;
-        console.<span class="syntax-function">log</span>(<span class="syntax-string">'User interaction detected'</span>);
-    });
-});</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- Standalone Terminal Example -->
-      <div class="mb-8">
-        <h3 class="text-xl font-bold mb-4">Command Line Interface Example</h3>
-        <div class="terminal-output">
-          <div class="terminal-header">
-            <div class="terminal-button red"></div>
-            <div class="terminal-button yellow"></div>
-            <div class="terminal-button green"></div>
-            <span class="text-sm text-gray-400 ml-3">Terminal</span>
-          </div>
-          <div class="terminal-content">
-            <pre><span class="terminal-prompt">user@hostname:~$</span> npm init -y
-Wrote to /home/user/package.json:
-{
-  "name": "my-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
-
-<span class="terminal-prompt">user@hostname:~$</span> npm install express
-added 57 packages, and audited 58 packages in 3s
-
-<span class="terminal-prompt">user@hostname:~$</span> node --version
-v18.17.0
-<span class="terminal-prompt">user@hostname:~$</span><span class="cursor">_</span></pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Featured Tutorials -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
@@ -469,6 +182,88 @@ v18.17.0
       </div>
     </section>
 
+    <!-- Core Concepts Tutorial Content -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Core Concepts
+      </h2>
+
+      <!-- Module 1: Code with Terminal Output -->
+      <div class="two-column-code-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Git Version Control Setup</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Content and Code -->
+          <div class="space-y-4">
+            <div class="prose">
+              <p class="text-gray-600">
+                Git is a distributed version control system that tracks changes
+                in your code. Let's initialize a new repository and make our
+                first commit.
+              </p>
+              <p class="text-gray-600">
+                Version control is
+                <span class="accent-text">essential</span> for any development
+                project.
+              </p>
+            </div>
+
+            <!-- Code Snippet with Copy -->
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>Git Commands</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment"># Initialize a new Git repository</span>
+git init
+
+<span class="syntax-comment"># Add all files to staging</span>
+git add .
+
+<span class="syntax-comment"># Make your first commit</span>
+git commit -m <span class="syntax-string">"Initial commit"</span>
+
+<span class="syntax-comment"># Check repository status</span>
+git status</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Terminal Output -->
+          <div>
+            <div class="terminal-output">
+              <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+                <span class="text-sm text-gray-400 ml-3">Terminal</span>
+              </div>
+              <div class="terminal-content">
+                <pre><span class="terminal-prompt">user@hostname:~/project$</span> git init
+Initialized empty Git repository in /home/user/project/.git/
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git add .
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git commit -m "Initial commit"
+[main (root-commit) f7a234d] Initial commit
+ 3 files changed, 125 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 styles.css
+ create mode 100644 script.js
+
+<span class="terminal-prompt">user@hostname:~/project$</span> git status
+On branch main
+nothing to commit, working tree clean
+<span class="terminal-prompt">user@hostname:~/project$</span><span class="cursor">_</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Frontend Basics Section -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
@@ -524,56 +319,122 @@ v18.17.0
 <span style="color: #10b981;">✓ SEO meta tags detected</span></pre>
               </div>
             </div>
+
+            <!-- Quote Block -->
+            <div class="blockquote-custom">
+              <p class="text-lg mb-4">
+                "Any fool can write code that a computer can understand. Good
+                programmers write code that humans can understand."
+              </p>
+              <cite class="text-sm text-gray-500">— Martin Fowler</cite>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- UI Frameworks Section -->
+    <!-- JavaScript Fundamentals Content -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
-        UI Frameworks
+        JavaScript Fundamentals
       </h2>
 
+      <!-- Module: Theory with Code Example -->
       <div class="two-column-theory-module mb-8">
-        <h3 class="text-2xl font-bold mb-6">Bootstrap vs Tailwind CSS</h3>
+        <h3 class="text-2xl font-bold mb-6">JavaScript Functions Deep Dive</h3>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Theory -->
           <div class="space-y-6">
-            <h4 class="text-xl font-bold">Bootstrap Framework</h4>
+            <h4 class="text-xl font-bold">Theory</h4>
             <div class="prose">
               <p class="text-gray-600">
-                Bootstrap provides pre-built components and a responsive grid
-                system. It's
-                <span class="accent-text">component-based</span> and comes with
-                JavaScript functionality.
+                Functions are reusable blocks of code that perform specific
+                tasks. They help organize code, reduce repetition, and make
+                programs more maintainable.
+              </p>
+              <p class="text-gray-600">
+                In JavaScript, functions are
+                <span class="accent-text">first-class objects</span>, meaning
+                they can be assigned to variables, passed as arguments, and
+                returned from other functions.
               </p>
             </div>
 
-            <div class="important-block">
+            <!-- Note Block -->
+            <div class="note-block">
               <div class="flex items-start">
-                <i
-                  class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"
-                ></i>
+                <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
                 <div>
-                  <h4 class="font-semibold text-purple-800 mb-2">
-                    Bootstrap Advantage
-                  </h4>
+                  <h4 class="font-semibold text-cyan-800 mb-2">Note</h4>
                   <p class="text-sm">
-                    Rapid prototyping with pre-built components.
+                    JavaScript is a dynamically typed language, which means you
+                    don't need to specify variable types explicitly. The
+                    <span class="accent-text">type is determined</span> at
+                    runtime.
                   </p>
                 </div>
               </div>
             </div>
+
+            <!-- Custom List -->
+            <div>
+              <h5 class="font-semibold mb-3">Function Benefits:</h5>
+              <ul class="custom-list space-y-2">
+                <li>Code reusability and modularity</li>
+                <li>Easier debugging and testing</li>
+                <li>Improved code organization</li>
+                <li>Reduced code duplication</li>
+              </ul>
+            </div>
           </div>
 
+          <!-- Right: Code Example -->
           <div class="space-y-6">
-            <h4 class="text-xl font-bold">Tailwind CSS</h4>
-            <div class="prose">
-              <p class="text-gray-600">
-                Tailwind is a
-                <span class="accent-text">utility-first</span> framework that
-                gives you complete design control.
-              </p>
+            <h4 class="text-xl font-bold">Practice</h4>
+            <div class="code-snippet">
+              <div class="code-header">
+                <span>JavaScript Functions</span>
+                <button onclick="copyCode(this)" class="copy-btn">
+                  <i class="fas fa-copy mr-2"></i>Copy
+                </button>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="syntax-comment">// Function declaration</span>
+<span class="syntax-keyword">function</span> <span class="syntax-function">calculateArea</span>(length, width) {
+    <span class="syntax-keyword">return</span> length * width;
+}
+
+<span class="syntax-comment">// Arrow function</span>
+<span class="syntax-keyword">const</span> <span class="syntax-variable">multiply</span> = (a, b) => a * b;
+
+<span class="syntax-comment">// Function with default parameters</span>
+<span class="syntax-keyword">function</span> <span class="syntax-function">greet</span>(name = <span class="syntax-string">"World"</span>) {
+    <span class="syntax-keyword">return</span> <span class="syntax-string">`Hello, ${name}!`</span>;
+}
+
+<span class="syntax-comment">// Usage examples</span>
+<span class="syntax-keyword">let</span> <span class="syntax-variable">area</span> = <span class="syntax-function">calculateArea</span>(<span class="syntax-number">10</span>, <span class="syntax-number">5</span>);
+<span class="syntax-keyword">let</span> <span class="syntax-variable">result</span> = <span class="syntax-function">multiply</span>(<span class="syntax-number">3</span>, <span class="syntax-number">4</span>);
+console.<span class="syntax-function">log</span>(<span class="syntax-function">greet</span>(<span class="syntax-string">"Developer"</span>));</code></pre>
+              </div>
+            </div>
+
+            <!-- Warning Block -->
+            <div class="warning-block">
+              <div class="flex items-start">
+                <i
+                  class="fas fa-exclamation-triangle text-orange-600 mr-3 mt-1"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-orange-800 mb-2">Warning</h4>
+                  <p class="text-sm">
+                    Be careful with
+                    <span class="accent-text">function hoisting</span> in
+                    JavaScript. Function declarations are hoisted, but function
+                    expressions and arrow functions are not.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -634,6 +495,94 @@ Wrote to package.json
 added 57 packages in 3.2s</pre>
               </div>
             </div>
+
+            <!-- Important Note Block -->
+            <div class="important-block">
+              <div class="flex items-start">
+                <i
+                  class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-purple-800 mb-2">
+                    Important Note
+                  </h4>
+                  <p class="text-sm">
+                    Always use descriptive function names that clearly indicate
+                    what the function does. This makes your code
+                    <span class="accent-text">self-documenting</span> and easier
+                    to understand.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI Frameworks Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        UI Frameworks
+      </h2>
+
+      <div class="two-column-theory-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Bootstrap vs Tailwind CSS</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Bootstrap Framework</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                Bootstrap provides pre-built components and a responsive grid
+                system. It's
+                <span class="accent-text">component-based</span> and comes with
+                JavaScript functionality.
+              </p>
+            </div>
+
+            <div class="important-block">
+              <div class="flex items-start">
+                <i
+                  class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-purple-800 mb-2">
+                    Bootstrap Advantage
+                  </h4>
+                  <p class="text-sm">
+                    Rapid prototyping with pre-built components.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold">Tailwind CSS</h4>
+            <div class="prose">
+              <p class="text-gray-600">
+                Tailwind is a
+                <span class="accent-text">utility-first</span> framework that
+                gives you complete design control.
+              </p>
+            </div>
+
+            <div class="important-block">
+              <div class="flex items-start">
+                <i
+                  class="fas fa-exclamation-circle text-purple-600 mr-3 mt-1"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-purple-800 mb-2">
+                    Tailwind CSS Advantage
+                  </h4>
+                  <p class="text-sm">
+                    Complete design control with utility-first approach and no
+                    unused CSS.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -658,6 +607,23 @@ added 57 packages in 3.2s</pre>
                 HTML document. JavaScript can manipulate this structure to
                 create <span class="accent-text">dynamic interactions</span>.
               </p>
+            </div>
+
+            <div class="note-block">
+              <div class="flex items-start">
+                <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
+                <div>
+                  <h4 class="font-semibold text-cyan-800 mb-2">
+                    Modern Frameworks
+                  </h4>
+                  <p class="text-sm">
+                    Modern frameworks like
+                    <span class="accent-text">React, Vue, and Angular</span>
+                    provide more efficient ways to build complex interactive
+                    applications.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -688,20 +654,80 @@ added 57 packages in 3.2s</pre>
 });</code></pre>
               </div>
             </div>
+
+            <!-- Pro Tip Block -->
+            <div class="tip-block">
+              <div class="flex items-start">
+                <i class="fas fa-lightbulb text-yellow-600 mr-3 mt-1"></i>
+                <div>
+                  <h4 class="font-semibold text-yellow-800 mb-2">Pro Tip</h4>
+                  <p class="text-sm">
+                    Use arrow functions for simple, one-line operations to make
+                    your code more concise. However, be aware that arrow
+                    functions have different
+                    <span class="accent-text">this</span> binding behavior.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="note-block">
-        <div class="flex items-start">
-          <i class="fas fa-info-circle text-cyan-600 mr-3 mt-1"></i>
-          <div>
-            <h4 class="font-semibold text-cyan-800 mb-2">Modern Frameworks</h4>
-            <p class="text-sm">
-              Modern frameworks like
-              <span class="accent-text">React, Vue, and Angular</span> provide
-              more efficient ways to build complex interactive applications.
-            </p>
+    <!-- Command Line Interface Example Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Command Line Interface Example
+      </h2>
+
+      <div class="two-column-code-module mb-8">
+        <h3 class="text-2xl font-bold mb-6">Command Line Practice</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
+          <div class="space-y-4">
+            <div class="prose">
+              <p class="text-gray-600">
+                Practice essential command line operations for JavaScript
+                development. These commands demonstrate
+                <span class="accent-text">package initialization</span>
+                and dependency management workflow.
+              </p>
+            </div>
+
+            <!-- Standalone Terminal Example -->
+            <div class="mb-8">
+              <div class="terminal-output">
+                <div class="terminal-header">
+                  <div class="terminal-button red"></div>
+                  <div class="terminal-button yellow"></div>
+                  <div class="terminal-button green"></div>
+                  <span class="text-sm text-gray-400 ml-3">Terminal</span>
+                </div>
+                <div class="terminal-content">
+                  <pre><span class="terminal-prompt">user@hostname:~$</span> npm init -y
+Wrote to /home/user/package.json:
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+<span class="terminal-prompt">user@hostname:~$</span> npm install express
+added 57 packages, and audited 58 packages in 3s
+
+<span class="terminal-prompt">user@hostname:~$</span> node --version
+v18.17.0
+<span class="terminal-prompt">user@hostname:~$</span><span class="cursor">_</span></pre>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
