@@ -230,6 +230,8 @@ class TutorialApp {
       tutorialContent.innerHTML = "";
       tutorialContent.classList.add("hidden");
       homeContent.classList.remove("hidden");
+      // initialize word changer after home content is loaded
+      this.initDynamicWordChanger();
     } else if (this.pages[pageName]) {
       tutorialContent.innerHTML = this.pages[pageName];
       homeContent.innerHTML = "";
@@ -464,6 +466,46 @@ class TutorialApp {
         }, 2000);
       });
   }
+
+  // Word changer
+  initDynamicWordChanger() {
+    const words = [
+      "Python",
+      "JavaScript",
+      "React",
+      "NodeJS",
+      "MongoDB",
+      "MySQL",
+      "SQL",
+      "HTML5",
+      "CSS3",
+      "ExpressJS",
+      "TypeScript",
+      "API",
+      "Networks",
+      "Web Development",
+      "NextJS",
+      "TailwindCSS",
+      "Docker",
+      "Git",
+      "Linux",
+      "NestJS",
+    ];
+
+    const dynamicWordElement = document.getElementById("dynamicWord");
+    let currentWordIndex = 0;
+
+    if (dynamicWordElement) {
+      // Change immediately to first word
+      dynamicWordElement.textContent = words[currentWordIndex];
+
+      // Then change every 2 seconds
+      setInterval(() => {
+        currentWordIndex = (currentWordIndex + 1) % words.length;
+        dynamicWordElement.textContent = words[currentWordIndex];
+      }, 2000);
+    }
+  }
 }
 
 // Initialize the application when DOM is loaded
@@ -576,7 +618,6 @@ function navigateToTutorial(section) {
 
   // Navigate to specific tutorial section
   showPage(section);
-
 }
 
 // Export for global access
