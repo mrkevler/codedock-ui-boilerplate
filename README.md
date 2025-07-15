@@ -39,7 +39,7 @@
 ## 🚀 Project Overview
 
 This is a modular web application boilerplate built with HTML5, Tailwind CSS and JavaScript 💫  
-Designed with a **site-in-site architecture** that enables seamless module integration for educational platforms, knowledge bases, and documentation systems 🎨
+Designed with a **site-in-site architecture** that enables seamless module integration for educational platforms, knowledge bases and documentation systems 🎨
 
 This framework is perfect for building scalable web applications with reusable components and dynamic content loading 🎓
 
